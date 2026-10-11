@@ -1,0 +1,13 @@
+Aturan Baku AI Agent (Cursor / Vibe Coding)
+
+Selalu baca progres.md sebelum menulis kode apapun.
+
+Prinsip Utama: TIDAK ADA dashboard user/masyarakat. Pengaduan bersifat sekali kirim. Balasan dikirim langsung via Email (Laravel Mailable).
+
+Google Socialite: Gunakan Google OAuth murni untuk autentikasi identitas pengirim (Nama + Email) pada form pengaduan tanpa menyimpan password atau membuat session user persisten.
+
+Fitur Balasan Admin: Buat fitur di Admin Panel di mana saat Admin mengisi kolom admin_reply dan menekan "Kirim Tanggapan", Laravel akan menembak Email Notifikasi ke reporter_email.
+
+Kompresi Gambar: Wajib konversi ke WebP, resize max width 800px, quality 10-20% untuk gambar pengaduan agar hemat storage server.
+
+Konfirmasi sebelum destruksi: Jangan pernah menjalankan php artisan migrate:fresh tanpa bertanya jika ada data dummy yang penting.
