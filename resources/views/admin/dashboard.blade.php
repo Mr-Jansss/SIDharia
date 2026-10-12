@@ -67,11 +67,11 @@
                     <div class="p-6 text-white">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="text-red-100 text-sm">Pengaduan Pending</p>
-                                <p class="font-bold text-3xl">{{ \App\Models\Complaint::where('status', 'pending')->count() }}</p>
+                                <p class="text-red-100 text-sm">Pengajuan Surat</p>
+                                <p class="font-bold text-3xl">{{ \App\Models\PengajuanSurat::where('status', 'pending')->count() }}</p>
                             </div>
                             <svg class="w-12 h-12 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
                         </div>
                     </div>
@@ -83,6 +83,10 @@
                 <div class="p-6">
                     <h4 class="mb-4 font-bold text-gray-900 text-lg">Quick Actions</h4>
                     <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
+                        <a href="{{ route('admin.settings.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
+                            <h5 class="font-semibold text-gray-900">Pengaturan Website</h5>
+                            <p class="text-gray-600 text-sm">Edit nomor WA dan teks halaman</p>
+                        </a>
                         <a href="{{ route('admin.village-profiles.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
                             <h5 class="font-semibold text-gray-900">Kelola Profil Desa</h5>
                             <p class="text-gray-600 text-sm">Edit sejarah, visi, dan misi desa</p>
@@ -106,6 +110,14 @@
                         <a href="{{ route('admin.facilities.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
                             <h5 class="font-semibold text-gray-900">Kelola Fasilitas Umum</h5>
                             <p class="text-gray-600 text-sm">Tambah fasilitas dengan lokasi GPS</p>
+                        </a>
+                        <a href="{{ route('admin.pengajuan-surat.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
+                            <h5 class="font-semibold text-gray-900">Kelola Pengajuan Surat</h5>
+                            <p class="text-gray-600 text-sm">Verifikasi dan proses pengajuan surat</p>
+                        </a>
+                        <a href="{{ route('admin.jenis-surat.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
+                            <h5 class="font-semibold text-gray-900">Kelola Jenis Surat</h5>
+                            <p class="text-gray-600 text-sm">Atur jenis surat dan persyaratannya</p>
                         </a>
                     </div>
                 </div>

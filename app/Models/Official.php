@@ -10,18 +10,19 @@ class Official extends Model
     protected $fillable = [
         'name',
         'position',
-        'image_path',
-        'order_number',
+        'phone',
+        'photo',
+        'order',
     ];
 
     protected $casts = [
-        'order_number' => 'integer',
+        'order' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
     public function getImageUrlAttribute()
     {
-        return $this->image_path ? Storage::url($this->image_path) : null;
+        return $this->photo ? Storage::url($this->photo) : null;
     }
 }

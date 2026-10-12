@@ -7,9 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class VillageProfile extends Model
 {
     protected $fillable = [
-        'title',
-        'content',
-        'type',
+        'village_name',
+        'profile_overview',
+        'sejarah',
+        'visi',
+        'misi',
+        'pemerintahan',
+        'struktur_organisasi',
+        'logo',
+        'address',
+        'phone',
+        'email',
+        'website',
     ];
 
     protected $casts = [

@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Storage;
 class Potential extends Model
 {
     protected $fillable = [
-        'title',
+        'name',
         'description',
         'category',
-        'image_path',
+        'image',
     ];
 
     protected $casts = [
@@ -21,6 +21,6 @@ class Potential extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image_path ? Storage::url($this->image_path) : null;
+        return $this->image ? Storage::url($this->image) : null;
     }
 }

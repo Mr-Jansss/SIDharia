@@ -19,6 +19,11 @@
                     <x-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">Fasilitas</x-nav-link>
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">Produk UMKM</x-nav-link>
                     <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">Berita</x-nav-link>
+                    <x-nav-link :href="route('admin.pengajuan-surat.index')" :active="request()->routeIs('admin.pengajuan-surat.*')">Pengajuan Surat</x-nav-link>
+                    <x-nav-link :href="route('admin.jenis-surat.index')" :active="request()->routeIs('admin.jenis-surat.*')">Jenis Surat</x-nav-link>
+                    <x-nav-link :href="route('admin.pengaduan.index')" :active="request()->routeIs('admin.pengaduan.*')">Pengaduan</x-nav-link>
+                    <x-nav-link :href="route('admin.hero-sliders.index')" :active="request()->routeIs('admin.hero-sliders.*')">Hero Slider</x-nav-link>
+                    <x-nav-link :href="route('admin.statistics.index')" :active="request()->routeIs('admin.statistics.*')">Statistik</x-nav-link>
                 </div>
             </div>
 
@@ -38,6 +43,10 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('admin.settings.index')">
+                            {{ __('Pengaturan Website') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('admin.profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>

@@ -9,11 +9,11 @@ class Product extends Model
 {
     protected $fillable = [
         'name',
-        'owner_name',
+        'contact_name',
         'description',
         'price',
-        'image_path',
-        'whatsapp_number',
+        'image',
+        'contact_phone',
     ];
 
     protected $casts = [
@@ -24,7 +24,7 @@ class Product extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image_path ? Storage::url($this->image_path) : null;
+        return $this->image ? Storage::url($this->image) : null;
     }
 
     public function getFormattedPriceAttribute()
