@@ -13,7 +13,7 @@
     <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
         <p>Kepada Yth. <strong>{{ $pengaduan->nama_pelapor }}</strong>,</p>
         
-        <p>Pengaduan Anda dengan nomor <strong>{{ $pengaduan->nomor_pengaduan }}</strong> telah ditanggapi oleh pemerintah Desa Haria.</p>
+        <p>Pengaduan Anda dengan nomor <strong>{{ $pengaduan->nomor_pengaduan }}</strong> telah ditanggapi oleh pemerintah Negeri Haria.</p>
         
         <div style="background-color: white; padding: 15px; margin: 20px 0; border-left: 4px solid #00529B; border-radius: 4px;">
             <h3 style="margin-top: 0; color: #00529B;">Detail Pengaduan</h3>
@@ -47,11 +47,11 @@
             </p>
         </div>
         
-        <p>Terima kasih atas partisipasi Anda dalam membangun Desa Haria yang lebih baik.</p>
+        <p>Terima kasih atas partisipasi Anda dalam membangun Negeri Haria yang lebih baik.</p>
         
         <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
             <p style="margin: 5px 0; color: #666; font-size: 14px;">
-                <strong>Pemerintah Desa Haria</strong><br>
+                <strong>Pemerintah Negeri Haria</strong><br>
                 Kecamatan Saparua, Kabupaten Maluku Tengah<br>
                 Provinsi Maluku
             </p>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Statistik Desa') }}
+            {{ __('Statistik Negeri') }}
         </h2>
     </x-slot>
 
@@ -16,7 +16,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <div class="mb-6 flex justify-between items-center">
-                        <h3 class="text-lg font-semibold text-gray-900">Data Statistik Desa</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Data Statistik Negeri</h3>
                         <a href="{{ route('admin.statistics.edit', $statistic) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Edit Data Statistik
                         </a>

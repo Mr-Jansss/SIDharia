@@ -38,6 +38,6 @@ class VillageStatisticController extends Controller
 
         return redirect()
             ->route('admin.statistics.index')
-            ->with('success', 'Statistik desa berhasil diperbarui!');
+            ->with('success', 'Statistik Negeri berhasil diperbarui!');
     }
 }

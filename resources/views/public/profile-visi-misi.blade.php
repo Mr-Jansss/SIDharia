@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Visi & Misi - Desa Wisata Haria')
+@section('title', 'Visi & Misi - Negeri Haria')
 
 @section('content')
 <!-- Hero Section -->
@@ -8,7 +8,7 @@
     <div class="container mx-auto px-4">
         <div class="text-center text-white">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Visi & Misi</h1>
-            <p class="text-xl text-gray-200">{{ $villageProfile->village_name ?? 'Desa Wisata Haria' }}</p>
+            <p class="text-xl text-gray-200">{{ $villageProfile->village_name ?? 'Negeri Haria' }}</p>
         </div>
     </div>
 </section>

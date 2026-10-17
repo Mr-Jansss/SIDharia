@@ -1,13 +1,13 @@
 @extends('layouts.public')
 
-@section('title', 'Fasilitas Umum - Desa Wisata Haria')
+@section('title', 'Fasilitas Umum - Negeri Haria')
 
 @section('content')
 <!-- Page Header -->
 <section class="bg-primary py-16">
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Fasilitas Umum</h1>
-        <p class="text-xl text-gray-200">Berbagai fasilitas publik yang tersedia di Desa Haria</p>
+        <p class="text-xl text-gray-200">Berbagai fasilitas publik yang tersedia di Negeri Haria</p>
     </div>
 </section>
 
@@ -79,7 +79,7 @@
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-primary mb-4">Peta Fasilitas</h2>
-            <p class="text-gray-600 text-lg">Lokasi fasilitas umum di Desa Haria</p>
+            <p class="text-gray-600 text-lg">Lokasi fasilitas umum di Negeri Haria</p>
         </div>
 
         <div class="max-w-6xl mx-auto bg-gray-200 rounded-lg p-4">

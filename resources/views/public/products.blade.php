@@ -1,13 +1,13 @@
 @extends('layouts.public')
 
-@section('title', 'Produk UMKM - Desa Wisata Haria')
+@section('title', 'Produk UMKM - Negeri Haria')
 
 @section('content')
 <!-- Page Header -->
 <section class="bg-primary py-16">
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Produk UMKM</h1>
-        <p class="text-xl text-gray-200">Dukung produk lokal dari masyarakat Desa Haria</p>
+        <p class="text-xl text-gray-200">Dukung produk lokal dari masyarakat Negeri Haria</p>
     </div>
 </section>
 
@@ -82,7 +82,7 @@
         <div class="max-w-3xl mx-auto">
             <h2 class="text-3xl font-bold text-primary mb-4">Ingin Menjual Produk Anda?</h2>
             <p class="text-gray-600 text-lg mb-8">
-                Bergabunglah dengan UMKM Desa Haria dan promosikan produk lokal Anda di platform ini
+                Bergabunglah dengan UMKM Negeri Haria dan promosikan produk lokal Anda di platform ini
             </p>
             <a href="https://wa.me/62xxx?text=Saya ingin mendaftarkan produk UMKM saya" 
                target="_blank"

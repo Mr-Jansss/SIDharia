@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Desa Wisata Haria')</title>
+    <title>@yield('title', 'Negeri Haria')</title>
+    <link rel="icon" type="image/png" href="{{ asset('storage/logo/logonegeriharia.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -217,11 +218,11 @@
             <div class="flex justify-between items-center py-4">
                 <!-- Logo & Brand -->
                 <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                    <div class="flex justify-center items-center bg-white rounded-full w-12 h-12">
-                        <i class="text-primary text-2xl fas fa-mountain"></i>
+                    <div class="flex justify-center items-center bg-white p-1 rounded-full w-12 h-12">
+                        <img src="{{ asset('storage/logo/logonegeriharia.png') }}" alt="Logo Negeri Haria" class="w-full h-full object-contain">
                     </div>
                     <div class="text-white">
-                        <h1 class="font-bold text-xl">Desa Wisata Haria</h1>
+                        <h1 class="font-bold text-xl">Negeri Haria</h1>
                         <p class="text-gray-200 text-xs">Kecamatan Sabu Barat</p>
                     </div>
                 </a>
@@ -237,13 +238,13 @@
                         Beranda
                     </a>
                     
-                    <!-- Dropdown Profil Desa -->
+                    <!-- Dropdown Profil Negeri -->
                     <div class="dropdown">
                         <a href="{{ route('profile') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('profile*') ? 'text-secondary font-semibold' : '' }}">
-                            Profil Desa <i class="ml-1 text-xs fas fa-chevron-down"></i>
+                            Profil Negeri <i class="ml-1 text-xs fas fa-chevron-down"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{{ route('profile') }}"><i class="fas fa-home"></i> Profil Desa</a>
+                            <a href="{{ route('profile') }}"><i class="fas fa-home"></i> Profil Negeri</a>
                             <a href="{{ route('profile.sejarah') }}"><i class="fas fa-book"></i> Sejarah</a>
                             <a href="{{ route('profile.visi-misi') }}"><i class="fas fa-bullseye"></i> Visi & Misi</a>
                             <a href="{{ route('profile.pemerintahan') }}"><i class="fas fa-landmark"></i> Pemerintahan</a>
@@ -252,7 +253,7 @@
                     </div>
 
                     <a href="{{ route('potentials') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('potentials') ? 'text-secondary font-semibold' : '' }}">
-                        Wisata
+                        Potensi Negeri
                     </a>
                     <a href="{{ route('statistics') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('statistics') ? 'text-secondary font-semibold' : '' }}">
                         Statistik
@@ -302,10 +303,10 @@
                         Beranda
                     </a>
                     <a href="{{ route('profile') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('profile') ? 'text-secondary font-semibold' : '' }}">
-                        Profil Desa
+                        Profil Negeri
                     </a>
                     <a href="{{ route('potentials') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('potentials') ? 'text-secondary font-semibold' : '' }}">
-                        Wisata
+                        Potensi Negeri
                     </a>
                     <a href="{{ route('facilities') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('facilities') ? 'text-secondary font-semibold' : '' }}">
                         Fasilitas
@@ -358,9 +359,9 @@
             <div class="gap-8 grid grid-cols-1 md:grid-cols-3">
                 <!-- Info Desa -->
                 <div>
-                    <h3 class="mb-4 font-bold text-secondary text-xl">Desa Wisata Haria</h3>
+                    <h3 class="mb-4 font-bold text-secondary text-xl">Negeri Haria</h3>
                     <p class="mb-4 text-gray-300">
-                        Desa wisata dengan keindahan alam dan budaya lokal yang memikat di Kecamatan Sabu Barat.
+                        Negeri adat dengan keindahan alam dan budaya lokal yang memikat di Kecamatan Saparua.
                     </p>
                     <div class="space-y-2 text-gray-300">
                         <p><i class="mr-2 text-secondary fas fa-map-marker-alt"></i> Kec. Sabu Barat, Kab. Sabu Raijua</p>
@@ -374,8 +375,8 @@
                     <h3 class="mb-4 font-bold text-secondary text-xl">Link Cepat</h3>
                     <ul class="space-y-2">
                         <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-secondary transition">Beranda</a></li>
-                        <li><a href="{{ route('profile') }}" class="text-gray-300 hover:text-secondary transition">Profil Desa</a></li>
-                        <li><a href="{{ route('potentials') }}" class="text-gray-300 hover:text-secondary transition">Potensi Wisata</a></li>
+                        <li><a href="{{ route('profile') }}" class="text-gray-300 hover:text-secondary transition">Profil Negeri</a></li>
+                    <li><a href="{{ route('potentials') }}" class="text-gray-300 hover:text-secondary transition">Potensi Negeri</a></li>
                         <li><a href="{{ route('facilities') }}" class="text-gray-300 hover:text-secondary transition">Fasilitas Umum</a></li>
                         <li><a href="{{ route('products') }}" class="text-gray-300 hover:text-secondary transition">Produk UMKM</a></li>
                         <li><a href="{{ route('posts') }}" class="text-gray-300 hover:text-secondary transition">Berita & Kegiatan</a></li>
@@ -405,7 +406,7 @@
             </div>
 
             <div class="mt-8 pt-6 border-gray-700 border-t text-gray-400 text-center">
-                <p>&copy; {{ date('Y') }} Desa Wisata Haria. Dibuat dengan ❤️ untuk masyarakat.</p>
+                <p>&copy; {{ date('Y') }} Negeri Haria. Dibuat dengan ❤️ untuk masyarakat.</p>
             </div>
         </div>
     </footer>

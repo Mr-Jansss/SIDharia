@@ -1,13 +1,13 @@
 @extends('layouts.public')
 
-@section('title', 'Potensi Wisata - Desa Wisata Haria')
+@section('title', 'Potensi Wisata - Negeri Haria')
 
 @section('content')
 <!-- Page Header -->
 <section class="bg-primary py-16">
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Potensi Wisata</h1>
-        <p class="text-xl text-gray-200">Jelajahi keindahan alam dan budaya Desa Haria</p>
+        <p class="text-xl text-gray-200">Jelajahi keindahan alam dan budaya Negeri Haria</p>
     </div>
 </section>
 

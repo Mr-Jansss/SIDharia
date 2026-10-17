@@ -52,7 +52,7 @@ class VillageProfileController extends Controller
 
         return redirect()
             ->route('admin.village-profiles.index')
-            ->with('success', 'Profil desa berhasil diperbarui!');
+            ->with('success', 'Profil Negeri berhasil diperbarui!');
     }
 }
 

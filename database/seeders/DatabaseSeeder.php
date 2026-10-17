@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // Admin User untuk Dashboard
         User::create([
-            'name' => 'Admin Desa Haria',
+            'name' => 'Admin Negeri Haria',
             'email' => 'admin@desaharia.id',
             'password' => bcrypt('password'),
             'role' => 'admin',

@@ -23,11 +23,11 @@ class SiteSettingSeeder extends Seeder
             ],
             [
                 'key_name' => 'pengajuan_instruction_text',
-                'value' => 'Setelah mengisi formulir, Anda akan diarahkan untuk mengirim berkas persyaratan melalui WhatsApp Admin Desa.',
+                'value' => 'Setelah mengisi formulir, Anda akan diarahkan untuk mengirim berkas persyaratan melalui WhatsApp Admin Negeri.',
             ],
             [
                 'key_name' => 'pengaduan_hero_text',
-                'value' => 'Sampaikan keluhan, aspirasi, atau laporan Anda kepada Pemerintah Desa Haria. Login dengan akun Google untuk melanjutkan.',
+                'value' => 'Sampaikan keluhan, aspirasi, atau laporan Anda kepada Pemerintah Negeri Haria. Login dengan akun Google untuk melanjutkan.',
             ],
             [
                 'key_name' => 'pengaduan_instruction_text',

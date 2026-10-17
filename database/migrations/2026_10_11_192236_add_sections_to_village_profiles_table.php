@@ -20,7 +20,7 @@ return new class extends Migration
         
         Schema::table('village_profiles', function (Blueprint $table) {
             // Add new comprehensive columns
-            $table->string('village_name')->default('Desa Wisata Haria')->after('id');
+            $table->string('village_name')->default('Negeri Haria')->after('id');
             $table->text('profile_overview')->nullable()->after('village_name');
             $table->text('pemerintahan')->nullable()->after('misi');
             $table->text('struktur_organisasi')->nullable()->after('pemerintahan');

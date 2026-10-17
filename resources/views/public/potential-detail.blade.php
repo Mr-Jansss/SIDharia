@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', $potential->name . ' - Desa Wisata Haria')
+@section('title', $potential->name . ' - Negeri Haria')
 
 @section('content')
 <!-- Hero Image -->

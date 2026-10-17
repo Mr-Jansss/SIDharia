@@ -18,10 +18,10 @@ class PengaduanSeeder extends Seeder
             [
                 'nama_pelapor' => 'Bapak Agus Santoso',
                 'google_email' => 'agus.santoso@gmail.com',
-                'judul' => 'Jalan Rusak di Depan Balai Desa',
-                'isi_laporan' => 'Jalan di depan Balai Desa mengalami kerusakan parah dengan banyak lubang. Kondisi ini sangat mengganggu aktivitas masyarakat dan berpotensi menyebabkan kecelakaan, terutama saat musim hujan.',
+                'judul' => 'Jalan Rusak di Depan Balai Negeri',
+                'isi_laporan' => 'Jalan di depan Balai Negeri mengalami kerusakan parah dengan banyak lubang. Kondisi ini sangat mengganggu aktivitas masyarakat dan berpotensi menyebabkan kecelakaan, terutama saat musim hujan.',
                 'status' => 'selesai',
-                'tanggapan' => 'Terima kasih atas laporannya. Perbaikan jalan di depan Balai Desa telah selesai dilakukan. Kami juga telah melakukan penambalan pada lubang-lubang jalan dan pengaspalan ulang sepanjang 50 meter. Mohon partisipasi masyarakat untuk turut menjaga infrastruktur desa.',
+                'tanggapan' => 'Terima kasih atas laporannya. Perbaikan jalan di depan Balai Negeri telah selesai dilakukan. Kami juga telah melakukan penambalan pada lubang-lubang jalan dan pengaspalan ulang sepanjang 50 meter. Mohon partisipasi masyarakat untuk turut menjaga infrastruktur desa.',
             ],
             [
                 'nama_pelapor' => 'Ibu Siti Aminah',

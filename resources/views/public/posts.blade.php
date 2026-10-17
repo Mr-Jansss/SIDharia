@@ -1,13 +1,13 @@
 @extends('layouts.public')
 
-@section('title', 'Berita & Kegiatan - Desa Wisata Haria')
+@section('title', 'Berita & Kegiatan - Negeri Haria')
 
 @section('content')
 <!-- Page Header -->
 <section class="bg-primary py-16">
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Berita & Kegiatan</h1>
-        <p class="text-xl text-gray-200">Update terbaru dari Desa Wisata Haria</p>
+        <p class="text-xl text-gray-200">Update terbaru dari Negeri Haria</p>
     </div>
 </section>
 

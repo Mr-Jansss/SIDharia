@@ -5,16 +5,20 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <span class="font-bold text-blue-600 text-xl">Desa Haria</span>
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
+                        <div class="flex justify-center items-center bg-blue-50 p-1.5 border border-blue-100 rounded-full w-10 h-10">
+                            <img src="{{ asset('storage/logo/logonegeriharia.png') }}" alt="Logo" class="w-full h-full object-contain">
+                        </div>
+                        <span class="font-bold text-blue-600 text-xl">Negeri Haria</span>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden sm:flex space-x-8 sm:-my-px sm:ms-10">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">Dashboard</x-nav-link>
-                    <x-nav-link :href="route('admin.village-profiles.index')" :active="request()->routeIs('admin.village-profiles.*')">Profil Desa</x-nav-link>
+                    <x-nav-link :href="route('admin.village-profiles.index')" :active="request()->routeIs('admin.village-profiles.*')">Profil Negeri</x-nav-link>
                     <x-nav-link :href="route('admin.officials.index')" :active="request()->routeIs('admin.officials.*')">Perangkat</x-nav-link>
+                    <x-nav-link :href="route('admin.leader-greetings.index')" :active="request()->routeIs('admin.leader-greetings.*')">Sambutan</x-nav-link>
                     <x-nav-link :href="route('admin.potentials.index')" :active="request()->routeIs('admin.potentials.*')">Potensi</x-nav-link>
                     <x-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">Fasilitas</x-nav-link>
                     <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">Produk UMKM</x-nav-link>

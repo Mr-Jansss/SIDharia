@@ -1,26 +1,30 @@
-<x-guest-layout>
-    <div class="container mx-auto px-4 py-8 max-w-2xl">
+@extends('layouts.public')
+
+@section('title', 'Cek Status Pengaduan - Negeri Haria')
+
+@section('content')
+    <div class="mx-auto px-4 py-8 max-w-2xl container">
         <!-- Header -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Cek Status Pengaduan</h1>
+        <div class="bg-white shadow-md mb-6 p-6 rounded-lg">
+            <h1 class="mb-2 font-bold text-gray-800 text-3xl">Cek Status Pengaduan</h1>
             <p class="text-gray-600">Masukkan nomor pengaduan dan email untuk melihat status</p>
         </div>
 
         <!-- Form Cek Status -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div class="bg-white shadow-md mb-6 p-6 rounded-lg">
             <form id="formCekStatus" class="space-y-4">
                 @csrf
                 
                 <!-- Email -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="email" class="block mb-2 font-medium text-gray-700 text-sm">
                         Email yang Terdaftar <span class="text-red-500">*</span>
                     </label>
                     <input 
                         type="email" 
                         id="email" 
                         name="email"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        class="px-4 py-2 border border-gray-300 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-500 w-full"
                         placeholder="contoh@gmail.com"
                         required
                     >
@@ -28,25 +32,25 @@
 
                 <!-- Nomor Pengaduan -->
                 <div>
-                    <label for="nomor_pengaduan" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="nomor_pengaduan" class="block mb-2 font-medium text-gray-700 text-sm">
                         Nomor Pengaduan <span class="text-red-500">*</span>
                     </label>
                     <input 
                         type="text" 
                         id="nomor_pengaduan" 
                         name="nomor_pengaduan"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        class="px-4 py-2 border border-gray-300 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-500 w-full"
                         placeholder="PGD-20261013-0001"
                         required
                     >
-                    <p class="mt-1 text-sm text-gray-500">Format: PGD-YYYYMMDD-XXXX</p>
+                    <p class="mt-1 text-gray-500 text-sm">Format: PGD-YYYYMMDD-XXXX</p>
                 </div>
 
                 <!-- Submit Button -->
                 <button 
                     type="submit" 
                     id="btnCek"
-                    class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-150 font-medium disabled:bg-gray-400"
+                    class="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 px-6 py-3 rounded-lg w-full font-medium text-white transition duration-150"
                 >
                     Cek Status
                 </button>
@@ -58,7 +62,7 @@
 
         <!-- Back Link -->
         <div class="text-center">
-            <a href="{{ route('pengaduan.create') }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+            <a href="{{ route('pengaduan.create') }}" class="font-medium text-blue-600 hover:text-blue-700 text-sm">
                 ← Buat Pengaduan Baru
             </a>
         </div>
@@ -122,20 +126,20 @@
             let tanggapanHtml = '';
             if (data.tanggapan) {
                 tanggapanHtml = `
-                    <div class="mt-6 pt-6 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Tanggapan</h3>
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
-                            <p class="text-gray-700 mb-2">${escapeHtml(data.tanggapan.isi)}</p>
-                            <p class="text-sm text-gray-500">Ditanggapi pada: ${data.tanggapan.tanggal} WIB</p>
+                    <div class="mt-6 pt-6 border-gray-200 border-t">
+                        <h3 class="mb-3 font-semibold text-gray-800 text-lg">Tanggapan</h3>
+                        <div class="bg-green-50 p-4 border border-green-200 rounded-lg">
+                            <p class="mb-2 text-gray-700">${escapeHtml(data.tanggapan.isi)}</p>
+                            <p class="text-gray-500 text-sm">Ditanggapi pada: ${data.tanggapan.tanggal} WIB</p>
                         </div>
                     </div>
                 `;
             }
             
             const html = `
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-semibold text-gray-800">Detail Pengaduan</h2>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-semibold text-gray-800 text-xl">Detail Pengaduan</h2>
                         <span class="px-3 py-1 rounded-full text-sm font-medium ${statusColor}">
                             ${escapeHtml(data.status_label)}
                         </span>
@@ -143,27 +147,27 @@
                     
                     <div class="space-y-3">
                         <div>
-                            <p class="text-sm text-gray-600">Nomor Pengaduan</p>
+                            <p class="text-gray-600 text-sm">Nomor Pengaduan</p>
                             <p class="font-bold text-blue-600">${escapeHtml(data.nomor_pengaduan)}</p>
                         </div>
                         
                         <div>
-                            <p class="text-sm text-gray-600">Judul</p>
+                            <p class="text-gray-600 text-sm">Judul</p>
                             <p class="font-medium text-gray-800">${escapeHtml(data.judul)}</p>
                         </div>
                         
                         <div>
-                            <p class="text-sm text-gray-600">Isi Laporan</p>
+                            <p class="text-gray-600 text-sm">Isi Laporan</p>
                             <p class="text-gray-700">${escapeHtml(data.isi_laporan)}</p>
                         </div>
                         
-                        <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="gap-4 grid grid-cols-2 pt-2">
                             <div>
-                                <p class="text-sm text-gray-600">Tanggal Lapor</p>
+                                <p class="text-gray-600 text-sm">Tanggal Lapor</p>
                                 <p class="font-medium text-gray-800">${data.tanggal_lapor} WIB</p>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-600">Foto Dilampirkan</p>
+                                <p class="text-gray-600 text-sm">Foto Dilampirkan</p>
                                 <p class="font-medium text-gray-800">${data.jumlah_foto} foto</p>
                             </div>
                         </div>
@@ -181,11 +185,11 @@
         
         function displayError(message) {
             const html = `
-                <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
-                    <svg class="w-12 h-12 text-red-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-red-50 p-4 border border-red-200 rounded-lg text-center">
+                    <svg class="mx-auto mb-3 w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <p class="text-red-800 font-medium">${escapeHtml(message)}</p>
+                    <p class="font-medium text-red-800">${escapeHtml(message)}</p>
                 </div>
             `;
             
@@ -201,4 +205,4 @@
         }
     </script>
     @endpush
-</x-guest-layout>
+@endsection

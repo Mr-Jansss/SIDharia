@@ -1,14 +1,14 @@
 @extends('layouts.public')
 
-@section('title', 'Profil Desa - Desa Wisata Haria')
+@section('title', 'Profil Negeri - Negeri Haria')
 
 @section('content')
 <!-- Hero Section -->
 <section class="bg-primary py-16">
     <div class="mx-auto px-4 container">
         <div class="text-white text-center">
-            <h1 class="mb-4 font-bold text-4xl md:text-5xl">Profil Desa</h1>
-            <p class="text-gray-200 text-xl">{{ $villageProfile->village_name ?? 'Desa Wisata Haria' }}</p>
+            <h1 class="mb-4 font-bold text-4xl md:text-5xl">Profil Negeri</h1>
+            <p class="text-gray-200 text-xl">{{ $villageProfile->village_name ?? 'Negeri Haria' }}</p>
         </div>
     </div>
 </section>
@@ -22,7 +22,7 @@
                     <p class="text-gray-700 text-lg leading-relaxed whitespace-pre-line">{{ $villageProfile->profile_overview }}</p>
                 </div>
             @else
-                <p class="mb-8 text-gray-500 italic">Informasi profil desa belum tersedia.</p>
+                <p class="mb-8 text-gray-500 italic">Informasi Profil Negeri belum tersedia.</p>
             @endif
 
             @if($villageProfile)

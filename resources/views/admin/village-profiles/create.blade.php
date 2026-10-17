@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Profil Desa') }}
+            {{ __('Tambah Profil Negeri') }}
         </h2>
     </x-slot>
 
@@ -31,7 +31,7 @@
                             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Judul</label>
                             <input type="text" name="title" id="title" value="{{ old('title') }}" required 
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                placeholder="Contoh: Sejarah Desa Haria">
+                                placeholder="Contoh: Sejarah Negeri Haria">
                             @error('title')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -42,7 +42,7 @@
                             <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Konten</label>
                             <textarea name="content" id="content" rows="10" required 
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                placeholder="Tulis konten profil desa di sini...">{{ old('content') }}</textarea>
+                                placeholder="Tulis konten Profil Negeri di sini...">{{ old('content') }}</textarea>
                             @error('content')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror

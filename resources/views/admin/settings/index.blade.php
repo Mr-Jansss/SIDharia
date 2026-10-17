@@ -29,7 +29,7 @@
                             <!-- Admin WhatsApp Number -->
                             <div class="mb-6">
                                 <label for="admin_wa_number" class="block mb-2 font-medium text-gray-700 text-sm">
-                                    Nomor WhatsApp Admin Desa
+                                    Nomor WhatsApp Admin Negeri
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <input 

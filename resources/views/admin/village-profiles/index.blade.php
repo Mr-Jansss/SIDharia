@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-gray-800 text-xl leading-tight">
-            {{ __('Profil Desa') }}
+            {{ __('Profil Negeri') }}
         </h2>
     </x-slot>
 
@@ -16,17 +16,17 @@
             <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
                 <div class="p-6">
                     <div class="mb-8">
-                        <h3 class="mb-4 font-semibold text-gray-900 text-lg">Edit Section Profil Desa</h3>
+                        <h3 class="mb-4 font-semibold text-gray-900 text-lg">Edit Section Profil Negeri</h3>
                         <p class="mb-6 text-gray-600">Pilih section yang ingin Anda edit:</p>
                         
                         <div class="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                            <!-- Card 1: Profil Desa -->
+                            <!-- Card 1: Profil Negeri -->
                             <a href="{{ route('admin.village-profiles.edit', $profile) }}?tab=overview" class="block bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-lg p-6 border-2 border-blue-200 hover:border-blue-400 rounded-lg transition">
                                 <div class="flex items-center mb-3">
                                     <i class="mr-3 text-blue-600 text-3xl fas fa-home"></i>
-                                    <h4 class="font-bold text-blue-900 text-lg">Profil Desa</h4>
+                                    <h4 class="font-bold text-blue-900 text-lg">Profil Negeri</h4>
                                 </div>
-                                <p class="text-blue-700 text-sm">Edit informasi umum, kontak, dan logo desa</p>
+                                <p class="text-blue-700 text-sm">Edit informasi umum, kontak, dan Logo Negeri</p>
                             </a>
 
                             <!-- Card 2: Sejarah -->

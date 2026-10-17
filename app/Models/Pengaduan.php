@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Pengaduan extends Model
 {
     protected $table = 'pengaduan';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'nomor_pengaduan',
@@ -28,7 +29,7 @@ class Pengaduan extends Model
      */
     public function fotos(): HasMany
     {
-        return $this->hasMany(FotoPengaduan::class);
+        return $this->hasMany(FotoPengaduan::class, 'pengaduan_id', 'id');
     }
 
     /**
@@ -36,7 +37,7 @@ class Pengaduan extends Model
      */
     public function tanggapans(): HasMany
     {
-        return $this->hasMany(TanggapanPengaduan::class);
+        return $this->hasMany(TanggapanPengaduan::class, 'pengaduan_id', 'id');
     }
 
     /**
@@ -44,7 +45,7 @@ class Pengaduan extends Model
      */
     public function latestTanggapan()
     {
-        return $this->hasOne(TanggapanPengaduan::class)->latestOfMany();
+        return $this->hasOne(TanggapanPengaduan::class, 'pengaduan_id', 'id')->latestOfMany();
     }
 
     /**

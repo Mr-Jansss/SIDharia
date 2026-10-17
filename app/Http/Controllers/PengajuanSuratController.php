@@ -62,7 +62,7 @@ class PengajuanSuratController extends Controller
         $syarat = $jenisSurat ? $jenisSurat->persyaratan : ['Fotokopi KTP', 'Fotokopi Kartu Keluarga (KK)'];
 
         // Generate pesan WhatsApp otomatis
-        $message = "Halo Admin Desa Haria,\n\n";
+        $message = "Halo Admin Negeri Haria,\n\n";
         $message .= "Saya telah mengisi formulir pengajuan surat:\n\n";
         $message .= "NIK: {$pengajuan->nik}\n";
         $message .= "Nama: {$pengajuan->nama}\n";

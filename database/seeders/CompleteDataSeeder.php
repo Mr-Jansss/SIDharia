@@ -148,11 +148,11 @@ class CompleteDataSeeder extends Seeder
     private function seedFacilities()
     {
         $facilities = [
-            ['name' => 'Kantor Desa Haria', 'description' => 'Kantor pusat pelayanan administrasi desa', 'icon' => 'fas fa-building', 'lat' => -10.5167, 'lng' => 121.8500],
+            ['name' => 'Kantor Negeri Haria', 'description' => 'Kantor pusat pelayanan administrasi desa', 'icon' => 'fas fa-building', 'lat' => -10.5167, 'lng' => 121.8500],
             ['name' => 'Puskesmas Haria', 'description' => 'Pusat kesehatan masyarakat dengan layanan 24 jam', 'icon' => 'fas fa-hospital', 'lat' => -10.5170, 'lng' => 121.8510],
             ['name' => 'SD Negeri Haria', 'description' => 'Sekolah dasar negeri dengan fasilitas lengkap', 'icon' => 'fas fa-school', 'lat' => -10.5165, 'lng' => 121.8505],
-            ['name' => 'Masjid Al-Ikhlas', 'description' => 'Masjid utama Desa Haria', 'icon' => 'fas fa-mosque', 'lat' => -10.5168, 'lng' => 121.8495],
-            ['name' => 'Balai Desa', 'description' => 'Tempat pertemuan dan acara masyarakat', 'icon' => 'fas fa-users', 'lat' => -10.5172, 'lng' => 121.8502],
+            ['name' => 'Masjid Al-Ikhlas', 'description' => 'Masjid utama Negeri Haria', 'icon' => 'fas fa-mosque', 'lat' => -10.5168, 'lng' => 121.8495],
+            ['name' => 'Balai Negeri', 'description' => 'Tempat pertemuan dan acara masyarakat', 'icon' => 'fas fa-users', 'lat' => -10.5172, 'lng' => 121.8502],
             ['name' => 'Lapangan Olahraga', 'description' => 'Lapangan serbaguna untuk berbagai kegiatan olahraga', 'icon' => 'fas fa-futbol', 'lat' => -10.5175, 'lng' => 121.8515],
         ];
 
@@ -202,10 +202,10 @@ class CompleteDataSeeder extends Seeder
     {
         $posts = [
             [
-                'title' => 'Desa Haria Raih Penghargaan Desa Wisata Terbaik 2026',
-                'content' => 'Desa Haria berhasil meraih penghargaan sebagai Desa Wisata Terbaik tingkat Provinsi NTT tahun 2026. Penghargaan ini diberikan atas keberhasilan desa dalam mengembangkan potensi wisata alam dan budaya dengan tetap menjaga kelestarian lingkungan.
+                'title' => 'Negeri Haria Raih Penghargaan Desa Wisata Terbaik 2026',
+                'content' => 'Negeri Haria berhasil meraih penghargaan sebagai Desa Wisata Terbaik tingkat Provinsi NTT tahun 2026. Penghargaan ini diberikan atas keberhasilan desa dalam mengembangkan potensi wisata alam dan budaya dengan tetap menjaga kelestarian lingkungan.
 
-Kepala Desa Haria, Bapak Yohanes Ndara, menyampaikan rasa syukur dan terima kasih kepada seluruh masyarakat yang telah berpartisipasi aktif dalam pengembangan desa wisata.
+Kepala Negeri Haria, Bapak Yohanes Ndara, menyampaikan rasa syukur dan terima kasih kepada seluruh masyarakat yang telah berpartisipasi aktif dalam pengembangan desa wisata.
 
 "Penghargaan ini adalah hasil kerja keras bersama seluruh elemen masyarakat. Kami akan terus berkomitmen untuk mengembangkan desa wisata yang berkelanjutan," ujar Kepala Desa.',
                 'category' => 'berita',
@@ -213,8 +213,8 @@ Kepala Desa Haria, Bapak Yohanes Ndara, menyampaikan rasa syukur dan terima kasi
                 'published_at' => now()->subDays(2),
             ],
             [
-                'title' => 'Festival Budaya Sabu 2026 Akan Digelar di Desa Haria',
-                'content' => 'Pemerintah Kabupaten Sabu Raijua akan menggelar Festival Budaya Sabu 2026 di Desa Haria pada tanggal 15-17 November 2026. Festival ini akan menampilkan berbagai atraksi budaya, pameran kerajinan, dan kuliner khas Sabu.
+                'title' => 'Festival Budaya Sabu 2026 Akan Digelar di Negeri Haria',
+                'content' => 'Pemerintah Kabupaten Sabu Raijua akan menggelar Festival Budaya Sabu 2026 di Negeri Haria pada tanggal 15-17 November 2026. Festival ini akan menampilkan berbagai atraksi budaya, pameran kerajinan, dan kuliner khas Sabu.
 
 Acara ini diharapkan dapat menarik wisatawan domestik dan mancanegara untuk mengenal lebih dekat budaya Sabu. Seluruh masyarakat desa diajak untuk berpartisipasi aktif dalam mensukseskan acara ini.',
                 'category' => 'kegiatan',
@@ -223,7 +223,7 @@ Acara ini diharapkan dapat menarik wisatawan domestik dan mancanegara untuk meng
             ],
             [
                 'title' => 'Pelatihan UMKM Digital Marketing untuk Warga Desa',
-                'content' => 'Pemerintah Desa Haria bekerja sama dengan Dinas Koperasi dan UKM mengadakan pelatihan digital marketing bagi pelaku UMKM desa. Pelatihan ini diikuti oleh 30 peserta yang merupakan pemilik usaha kecil dan menengah di desa.
+                'content' => 'Pemerintah Negeri Haria bekerja sama dengan Dinas Koperasi dan UKM mengadakan pelatihan digital marketing bagi pelaku UMKM desa. Pelatihan ini diikuti oleh 30 peserta yang merupakan pemilik usaha kecil dan menengah di desa.
 
 Materi pelatihan mencakup cara memasarkan produk melalui media sosial, membuat konten menarik, dan strategi penjualan online. Diharapkan setelah mengikuti pelatihan ini, para pelaku UMKM dapat meningkatkan penjualan produk mereka.',
                 'category' => 'kegiatan',
@@ -232,7 +232,7 @@ Materi pelatihan mencakup cara memasarkan produk melalui media sosial, membuat k
             ],
             [
                 'title' => 'Gotong Royong Pembersihan Pantai Haria',
-                'content' => 'Masyarakat Desa Haria mengadakan kegiatan gotong royong pembersihan Pantai Haria yang diikuti oleh sekitar 100 warga. Kegiatan ini bertujuan untuk menjaga kebersihan dan kelestarian pantai sebagai salah satu destinasi wisata unggulan desa.
+                'content' => 'Masyarakat Negeri Haria mengadakan kegiatan gotong royong pembersihan Pantai Haria yang diikuti oleh sekitar 100 warga. Kegiatan ini bertujuan untuk menjaga kebersihan dan kelestarian pantai sebagai salah satu destinasi wisata unggulan desa.
 
 Kegiatan yang berlangsung selama 3 jam ini berhasil mengumpulkan sampah sebanyak 200 kg. Kepala Desa mengapresiasi partisipasi masyarakat dan mengimbau agar seluruh warga menjaga kebersihan lingkungan.',
                 'category' => 'kegiatan',
@@ -241,7 +241,7 @@ Kegiatan yang berlangsung selama 3 jam ini berhasil mengumpulkan sampah sebanyak
             ],
             [
                 'title' => 'Pembangunan Dermaga Baru untuk Akses Wisata Bahari',
-                'content' => 'Pemerintah desa tengah membangun dermaga baru di pesisir Desa Haria untuk mempermudah akses wisata bahari. Dermaga ini diharapkan dapat menampung kapal-kapal wisata dan mempermudah aktivitas nelayan.
+                'content' => 'Pemerintah desa tengah membangun dermaga baru di pesisir Negeri Haria untuk mempermudah akses wisata bahari. Dermaga ini diharapkan dapat menampung kapal-kapal wisata dan mempermudah aktivitas nelayan.
 
 Pembangunan dermaga ini merupakan bagian dari program pengembangan infrastruktur desa wisata yang didanai oleh Dana Desa dan APBD Kabupaten. Target penyelesaian pembangunan adalah akhir tahun 2026.',
                 'category' => 'berita',

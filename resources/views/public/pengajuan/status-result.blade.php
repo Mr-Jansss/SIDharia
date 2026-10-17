@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Pengajuan - Desa Haria</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    @include('layouts.public-header')
+@extends('layouts.public')
 
+@section('title', 'Status Pengajuan - Negeri Haria')
+
+@section('content')
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-blue-600 to-blue-800 py-12 text-white">
         <div class="mx-auto px-4 container">
@@ -139,7 +132,5 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    @include('layouts.public-footer')
-</body>
-</html>
+    @endsection
+

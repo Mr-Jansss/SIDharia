@@ -89,6 +89,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('pengaduan', \App\Http\Controllers\Admin\PengaduanController::class)->except(['create', 'store']);
     Route::post('/pengaduan/{pengaduan}/tanggapan', [\App\Http\Controllers\Admin\PengaduanController::class, 'storeTanggapan'])->name('pengaduan.tanggapan.store');
 
+    // Leader Greeting Management (Admin)
+    Route::resource('leader-greetings', \App\Http\Controllers\Admin\LeaderGreetingController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

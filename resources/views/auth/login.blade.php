@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Header -->
     <div class="mb-6 text-center">
-        <h2 class="font-bold text-blue-600 text-2xl">Admin Desa Haria</h2>
+        <h2 class="font-bold text-blue-600 text-2xl">Admin Negeri Haria</h2>
         <p class="mt-1 text-gray-600 text-sm">Silakan login untuk mengakses dashboard administrasi</p>
     </div>
 
@@ -53,6 +53,6 @@
     </form>
 
     <div class="mt-6 text-gray-500 text-xs text-center">
-        <p>© 2026 Desa Haria, Saparua - Maluku Tengah</p>
+        <p>© 2026 Negeri Haria, Saparua - Maluku Tengah</p>
     </div>
 </x-guest-layout>

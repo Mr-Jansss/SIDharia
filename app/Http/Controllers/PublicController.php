@@ -11,6 +11,7 @@ use App\Models\Post;
 use App\Models\HeroSlider;
 use App\Models\VillageStatistic;
 use App\Models\Pengaduan;
+use App\Models\LeaderGreeting;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -39,17 +40,21 @@ class PublicController extends Controller
             ->take(6)
             ->get();
 
+        // Ambil sambutan pemimpin yang aktif
+        $leaderGreeting = LeaderGreeting::where('is_active', true)->first();
+
         return view('public.index', compact(
             'heroSliders',
             'villageProfile',
             'featuredPotentials',
             'latestProducts',
             'latestPosts',
-            'resolvedComplaints'
+            'resolvedComplaints',
+            'leaderGreeting'
         ));
     }
 
-    // Profil Desa
+    // Profil Negeri
     public function profile()
     {
         $villageProfile = VillageProfile::first();
@@ -58,28 +63,28 @@ class PublicController extends Controller
         return view('public.profile', compact('villageProfile', 'officials'));
     }
 
-    // Profil Desa - Sejarah
+    // Profil Negeri - Sejarah
     public function profileSejarah()
     {
         $villageProfile = VillageProfile::first();
         return view('public.profile-sejarah', compact('villageProfile'));
     }
 
-    // Profil Desa - Visi & Misi
+    // Profil Negeri - Visi & Misi
     public function profileVisiMisi()
     {
         $villageProfile = VillageProfile::first();
         return view('public.profile-visi-misi', compact('villageProfile'));
     }
 
-    // Profil Desa - Pemerintahan
+    // Profil Negeri - Pemerintahan
     public function profilePemerintahan()
     {
         $villageProfile = VillageProfile::first();
         return view('public.profile-pemerintahan', compact('villageProfile'));
     }
 
-    // Profil Desa - Struktur Organisasi
+    // Profil Negeri - Struktur Organisasi
     public function profileStrukturOrganisasi()
     {
         $villageProfile = VillageProfile::first();
@@ -87,7 +92,7 @@ class PublicController extends Controller
         return view('public.profile-struktur-organisasi', compact('villageProfile', 'officials'));
     }
 
-    // Statistik Desa
+    // Statistik Negeri
     public function statistics()
     {
         $statistic = VillageStatistic::firstOrCreate([]);

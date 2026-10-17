@@ -41,4 +41,9 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URL', env('APP_URL').'/auth/google/callback'),
     ],
 
+    // Guzzle HTTP options (for development - disable SSL verify)
+    'guzzle' => [
+        'verify' => env('GUZZLE_VERIFY_SSL', true),
+    ],
+
 ];

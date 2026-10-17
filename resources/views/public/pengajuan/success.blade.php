@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengajuan Berhasil - Desa Haria</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    @include('layouts.public-header')
+@extends('layouts.public')
 
+@section('title', 'Pengajuan Berhasil - Negeri Haria')
+
+@section('content')
     <!-- Success Section -->
     <section class="py-16">
         <div class="mx-auto px-4 container">
@@ -62,7 +55,7 @@
                             <ol class="space-y-1 text-blue-800 text-sm list-decimal list-inside">
                                 <li>Klik tombol "Kirim Berkas via WhatsApp" di bawah</li>
                                 <li>Kirim foto/scan dokumen persyaratan yang dibutuhkan</li>
-                                <li>Tunggu konfirmasi dari Admin Desa Haria</li>
+                                <li>Tunggu konfirmasi dari Admin Negeri Haria</li>
                                 <li>Anda dapat mengecek status pengajuan kapan saja dengan NIK Anda</li>
                             </ol>
                         </div>
@@ -136,7 +129,5 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    @include('layouts.public-footer')
-</body>
-</html>
+    @endsection
+

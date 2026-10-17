@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-gray-800 text-xl leading-tight">
-            {{ __('Edit Profil Desa') }}
+            {{ __('Edit Profil Negeri') }}
         </h2>
     </x-slot>
 
@@ -17,7 +17,7 @@
                         <div class="mb-6 border-gray-200 border-b">
                             <nav class="flex space-x-8 -mb-px">
                                 <button type="button" onclick="switchTab('overview')" id="tab-overview" class="px-1 py-4 border-blue-500 border-b-2 font-medium text-blue-600 text-sm tab-button active">
-                                    Profil Desa
+                                    Profil Negeri
                                 </button>
                                 <button type="button" onclick="switchTab('sejarah')" id="tab-sejarah" class="px-1 py-4 border-transparent hover:border-gray-300 border-b-2 font-medium text-gray-500 hover:text-gray-700 text-sm tab-button">
                                     Sejarah
@@ -34,7 +34,7 @@
                             </nav>
                         </div>
 
-                        <!-- Tab: Profil Desa -->
+                        <!-- Tab: Profil Negeri -->
                         <div id="content-overview" class="space-y-4 tab-content">
                             <div>
                                 <label for="village_name" class="block font-medium text-gray-700 text-sm">Nama Desa</label>
@@ -46,7 +46,7 @@
                             </div>
 
                             <div>
-                                <label for="profile_overview" class="block font-medium text-gray-700 text-sm">Deskripsi Profil Desa</label>
+                                <label for="profile_overview" class="block font-medium text-gray-700 text-sm">Deskripsi Profil Negeri</label>
                                 <textarea name="profile_overview" id="profile_overview" rows="6"
                                     class="block shadow-sm mt-1 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full">{{ old('profile_overview', $villageProfile->profile_overview) }}</textarea>
                                 @error('profile_overview')
@@ -97,7 +97,7 @@
                                 <label class="block mb-2 font-medium text-gray-700 text-sm">Logo Saat Ini</label>
                                 <img src="{{ Storage::url($villageProfile->logo) }}" alt="Logo" class="mb-4 h-32">
                                 @endif
-                                <label for="logo" class="block font-medium text-gray-700 text-sm">Logo Desa (Opsional)</label>
+                                <label for="logo" class="block font-medium text-gray-700 text-sm">Logo Negeri (Opsional)</label>
                                 <input type="file" name="logo" id="logo" accept="image/*"
                                     class="block mt-1 w-full">
                                 <p class="mt-1 text-gray-500 text-xs">Format: JPG, PNG, GIF. Max: 2MB</p>

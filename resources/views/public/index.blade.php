@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Beranda - Desa Wisata Haria')
+@section('title', 'Beranda - Negeri Haria')
 
 @section('content')
 <!-- Hero Slider Section -->
@@ -25,7 +25,7 @@
                         @endif
                         <div class="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
                             <a href="{{ route('potentials') }}" class="bg-secondary hover:bg-yellow-400 px-8 py-3 rounded-lg font-semibold text-primary transition">
-                                Jelajahi Wisata
+                                Jelajahi Potensi
                             </a>
                             <a href="{{ route('products') }}" class="bg-white hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-primary transition">
                                 Produk UMKM
@@ -67,14 +67,14 @@
             <div class="text-white">
                 <h1 class="mb-6 font-bold text-5xl leading-tight">
                     Selamat Datang di<br>
-                    <span class="text-secondary">Desa Wisata Haria</span>
+                    <span class="text-secondary">Negeri Haria</span>
                 </h1>
                 <p class="mb-8 text-gray-200 text-xl">
                     Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Sabu Barat.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('potentials') }}" class="bg-secondary hover:bg-yellow-400 px-8 py-3 rounded-lg font-semibold text-primary transition">
-                        Jelajahi Wisata
+                        Jelajahi Potensi
                     </a>
                     <a href="{{ route('products') }}" class="bg-white hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-primary transition">
                         Produk UMKM
@@ -117,13 +117,61 @@
 </section>
 @endif
 
+<!-- Leader Greeting Section -->
+@if($leaderGreeting)
+<section class="bg-gray-50 py-16">
+    <div class="mx-auto px-4 container">
+        <div class="mx-auto max-w-5xl">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="gap-0 grid grid-cols-1 md:grid-cols-3">
+                    <!-- Photo Section -->
+                    <div class="flex justify-center items-center md:col-span-1 bg-primary p-8">
+                        @if($leaderGreeting->leader_photo)
+                            <div class="relative">
+                                <img src="{{ Storage::url($leaderGreeting->leader_photo) }}" 
+                                     alt="{{ $leaderGreeting->leader_name }}" 
+                                     class="shadow-xl border-4 border-white rounded-lg w-48 h-48 object-cover">
+                            </div>
+                        @else
+                            <div class="flex justify-center items-center bg-white/20 rounded-lg w-48 h-48">
+                                <i class="text-white text-6xl fas fa-user"></i>
+                            </div>
+                        @endif
+                    </div>
+                    
+                    <!-- Greeting Content -->
+                    <div class="md:col-span-2 p-8 md:p-10">
+                        <div class="mb-4">
+                            <h3 class="mb-2 font-bold text-primary text-2xl md:text-3xl">
+                                {{ $leaderGreeting->leader_name }}
+                            </h3>
+                            <p class="font-semibold text-secondary text-lg">
+                                {{ $leaderGreeting->leader_position }}
+                            </p>
+                        </div>
+                        
+                        <div class="relative">
+                            <!-- Greeting Text -->
+                            <div class="text-gray-700 text-base md:text-lg leading-relaxed">
+                                <p class="italic">{{ $leaderGreeting->greeting_text }}</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endif
+
 <!-- Featured Potentials Section -->
 @if($featuredPotentials->count() > 0)
 <section class="bg-gray-50 py-16">
     <div class="mx-auto px-4 container">
         <div class="mb-12 text-center">
             <h2 class="mb-4 font-bold text-primary text-4xl">Potensi Wisata Unggulan</h2>
-            <p class="text-gray-600 text-lg">Temukan destinasi wisata menarik di Desa Haria</p>
+            <p class="text-gray-600 text-lg">Temukan destinasi wisata menarik di Negeri Haria</p>
         </div>
 
         <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
@@ -165,7 +213,7 @@
     <div class="mx-auto px-4 container">
         <div class="mb-12 text-center">
             <h2 class="mb-4 font-bold text-primary text-4xl">Produk UMKM Terbaru</h2>
-            <p class="text-gray-600 text-lg">Dukung produk lokal dari masyarakat Desa Haria</p>
+            <p class="text-gray-600 text-lg">Dukung produk lokal dari masyarakat Negeri Haria</p>
         </div>
 
         <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -211,7 +259,7 @@
     <div class="mx-auto px-4 container">
         <div class="mb-12 text-center">
             <h2 class="mb-4 font-bold text-primary text-4xl">Berita & Kegiatan Terkini</h2>
-            <p class="text-gray-600 text-lg">Update terbaru dari Desa Wisata Haria</p>
+            <p class="text-gray-600 text-lg">Update terbaru dari Negeri Haria</p>
         </div>
 
         <div class="gap-6 grid grid-cols-1 md:grid-cols-3">
@@ -254,7 +302,7 @@
     <div class="mx-auto px-4 container">
         <div class="mb-12 text-center">
             <h2 class="mb-4 font-bold text-primary text-4xl">Pengaduan yang Telah Ditanggapi</h2>
-            <p class="text-gray-600 text-lg">Transparansi pelayanan pengaduan masyarakat Desa Haria</p>
+            <p class="text-gray-600 text-lg">Transparansi pelayanan pengaduan masyarakat Negeri Haria</p>
         </div>
 
         <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

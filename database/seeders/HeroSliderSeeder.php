@@ -20,7 +20,7 @@ class HeroSliderSeeder extends Seeder
 
         $sliders = [
             [
-                'title' => 'Selamat Datang di Desa Wisata Haria',
+                'title' => 'Selamat Datang di Negeri Haria',
                 'description' => 'Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Sabu Barat.',
                 'image' => 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=600&fit=crop',
                 'order' => 1,
@@ -42,7 +42,7 @@ class HeroSliderSeeder extends Seeder
             ],
             [
                 'title' => 'Produk UMKM Unggulan',
-                'description' => 'Dukung produk lokal berkualitas dari pengrajin dan pelaku usaha di Desa Haria.',
+                'description' => 'Dukung produk lokal berkualitas dari pengrajin dan pelaku usaha di Negeri Haria.',
                 'image' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&h=600&fit=crop',
                 'order' => 4,
                 'is_active' => true,

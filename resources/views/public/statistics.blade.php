@@ -1,14 +1,14 @@
 @extends('layouts.public')
 
-@section('title', 'Statistik Desa - Desa Wisata Haria')
+@section('title', 'Statistik Negeri - Negeri Haria')
 
 @section('content')
 <!-- Hero Section -->
 <section class="bg-primary py-16">
     <div class="container mx-auto px-4">
         <div class="text-center text-white">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Statistik Desa</h1>
-            <p class="text-xl text-gray-200">Data kependudukan dan wilayah Desa Haria secara keseluruhan</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Statistik Negeri</h1>
+            <p class="text-xl text-gray-200">Data kependudukan dan wilayah Negeri Haria secara keseluruhan</p>
         </div>
     </div>
 </section>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-gray-800 text-xl leading-tight">
-            {{ __('Admin Dashboard - Desa Haria') }}
+            {{ __('Admin Dashboard - Negeri Haria') }}
         </h2>
     </x-slot>
 
@@ -11,18 +11,18 @@
             <div class="bg-white shadow-sm mb-6 sm:rounded-lg overflow-hidden">
                 <div class="p-6 text-gray-900">
                     <h3 class="mb-2 font-bold text-2xl">Selamat Datang, {{ Auth::user()->name }}!</h3>
-                    <p class="text-gray-600">Anda login sebagai Administrator Desa Haria</p>
+                    <p class="text-gray-600">Anda login sebagai Administrator Negeri Haria</p>
                 </div>
             </div>
 
             <!-- Statistics Cards -->
             <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
-                <!-- Profil Desa -->
+                <!-- Profil Negeri -->
                 <div class="bg-blue-500 shadow-sm sm:rounded-lg overflow-hidden">
                     <div class="p-6 text-white">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="text-blue-100 text-sm">Profil Desa</p>
+                                <p class="text-blue-100 text-sm">Profil Negeri</p>
                                 <p class="font-bold text-3xl">{{ \App\Models\VillageProfile::count() }}</p>
                             </div>
                             <svg class="w-12 h-12 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@
                             <p class="text-gray-600 text-sm">Edit nomor WA dan teks halaman</p>
                         </a>
                         <a href="{{ route('admin.village-profiles.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Profil Desa</h5>
+                            <h5 class="font-semibold text-gray-900">Kelola Profil Negeri</h5>
                             <p class="text-gray-600 text-sm">Edit sejarah, visi, dan misi desa</p>
                         </a>
                         <a href="{{ route('admin.potentials.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">

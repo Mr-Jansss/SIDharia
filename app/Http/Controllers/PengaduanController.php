@@ -13,10 +13,29 @@ class PengaduanController extends Controller
     /**
      * Tampilkan form pengaduan (dengan gate Google OAuth)
      */
-    public function create()
+    public function create(Request $request)
     {
         // Cek apakah user sudah login via Google
         $googleAuth = session('google_auth');
+        
+        // Fallback: cek dari cache kalau session hilang
+        if (!$googleAuth) {
+            $sessionId = $request->session()->getId();
+            $googleAuth = cache()->get("google_auth_{$sessionId}");
+            
+            // Kalau ada di cache, restore ke session
+            if ($googleAuth) {
+                session()->put('google_auth', $googleAuth);
+                session()->save();
+                \Log::info('Google Auth restored from cache', ['session_id' => $sessionId]);
+            }
+        }
+        
+        \Log::info('=== PENGADUAN CREATE PAGE ===');
+        \Log::info('Google Auth exists:', ['exists' => !is_null($googleAuth)]);
+        if ($googleAuth) {
+            \Log::info('Google Auth Data:', $googleAuth);
+        }
         
         return view('pengaduan.create', compact('googleAuth'));
     }
@@ -26,9 +45,17 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
+        // Debug logging
+        \Log::info('=== PENGADUAN STORE CALLED ===');
+        \Log::info('Request Data:', $request->all());
+        \Log::info('Session Data:', session()->all());
+        
         // Validasi session Google
         $googleAuth = session('google_auth');
+        \Log::info('Google Auth:', ['exists' => !is_null($googleAuth), 'data' => $googleAuth]);
+        
         if (!$googleAuth) {
+            \Log::warning('Google Auth Not Found - Redirecting to create');
             return redirect()->route('pengaduan.create')
                 ->with('error', 'Silakan login dengan Google terlebih dahulu');
         }
@@ -78,11 +105,18 @@ class PengaduanController extends Controller
 
             DB::commit();
 
+            \Log::info('Pengaduan berhasil disimpan', ['id' => $pengaduan->id, 'nomor' => $pengaduan->nomor_pengaduan]);
+            
             return redirect()->route('pengaduan.success', $pengaduan->id)
                 ->with('success', 'Pengaduan berhasil dikirim');
 
         } catch (\Exception $e) {
             DB::rollBack();
+            
+            \Log::error('Error menyimpan pengaduan', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             
             return back()
                 ->with('error', 'Terjadi kesalahan. Silakan coba lagi.')
@@ -127,7 +161,7 @@ class PengaduanController extends Controller
         // Format nomor pengaduan: PGD-YYYYMMDD-ID
         $pengaduan = Pengaduan::where('google_email', $request->email)
             ->where('nomor_pengaduan', $request->nomor_pengaduan)
-            ->with(['fotos', 'tanggapan'])
+            ->with(['fotos', 'latestTanggapan'])
             ->first();
 
         if (!$pengaduan) {
@@ -148,9 +182,9 @@ class PengaduanController extends Controller
                 'status_color' => $pengaduan->getStatusColor(),
                 'tanggal_lapor' => $pengaduan->created_at->format('d/m/Y H:i'),
                 'jumlah_foto' => $pengaduan->fotos->count(),
-                'tanggapan' => $pengaduan->tanggapan ? [
-                    'isi' => $pengaduan->tanggapan->isi_tanggapan,
-                    'tanggal' => $pengaduan->tanggapan->created_at->format('d/m/Y H:i'),
+                'tanggapan' => $pengaduan->latestTanggapan ? [
+                    'isi' => $pengaduan->latestTanggapan->isi_tanggapan,
+                    'tanggal' => $pengaduan->latestTanggapan->created_at->format('d/m/Y H:i'),
                 ] : null,
             ],
         ]);
