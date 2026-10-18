@@ -17,6 +17,14 @@ class VillageStatistic extends Model
         'pendidikan_smp',
         'pendidikan_sma',
         'pendidikan_s1',
+        'pekerjaan_petani',
+        'pekerjaan_nelayan',
+        'pekerjaan_pedagang',
+        'pekerjaan_pns',
+        'pekerjaan_guru',
+        'pekerjaan_wiraswasta',
+        'pekerjaan_buruh',
+        'pekerjaan_lainnya',
     ];
 
     protected $casts = [
@@ -30,5 +38,13 @@ class VillageStatistic extends Model
         'pendidikan_smp' => 'integer',
         'pendidikan_sma' => 'integer',
         'pendidikan_s1' => 'integer',
+        'pekerjaan_petani' => 'integer',
+        'pekerjaan_nelayan' => 'integer',
+        'pekerjaan_pedagang' => 'integer',
+        'pekerjaan_pns' => 'integer',
+        'pekerjaan_guru' => 'integer',
+        'pekerjaan_wiraswasta' => 'integer',
+        'pekerjaan_buruh' => 'integer',
+        'pekerjaan_lainnya' => 'integer',
     ];
 }

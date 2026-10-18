@@ -19,17 +19,17 @@ class VillageProfileSeeder extends Seeder
         VillageProfile::create([
             'village_name' => 'Negeri Haria',
             
-            'profile_overview' => 'Negeri Haria adalah destinasi wisata yang terletak di Kecamatan Sabu Barat, Kabupaten Sabu Raijua, Provinsi Nusa Tenggara Timur. Desa ini menawarkan keindahan alam yang memukau, budaya lokal yang kaya, serta keramahan masyarakatnya.
+            'profile_overview' => 'Negeri Haria adalah destinasi wisata yang terletak di Kecamatan Saparua, Kabupaten Maluku Tengah, Provinsi Maluku. Desa ini menawarkan keindahan alam yang memukau, budaya lokal yang kaya, serta keramahan masyarakatnya.
 
 Dengan luas wilayah sekitar 25 km², Negeri Haria memiliki berbagai potensi wisata mulai dari pantai, perbukitan, hingga situs budaya. Masyarakat desa yang mayoritas bekerja sebagai petani dan nelayan, kini juga aktif mengembangkan sektor pariwisata dan UMKM.',
 
-            'sejarah' => 'Negeri Haria adalah salah satu desa yang terletak di Kecamatan Sabu Barat, Kabupaten Sabu Raijua, Provinsi Nusa Tenggara Timur. Desa ini memiliki sejarah panjang yang dimulai sejak zaman penjajahan Belanda. Masyarakat Negeri Haria dikenal dengan kearifan lokalnya yang masih terjaga hingga saat ini.
+            'sejarah' => 'Negeri Haria adalah salah satu desa yang terletak di Kecamatan Saparua, Kabupaten Maluku Tengah, Provinsi Maluku. Desa ini memiliki sejarah panjang yang dimulai sejak zaman penjajahan Belanda. Masyarakat Negeri Haria dikenal dengan kearifan lokalnya yang masih terjaga hingga saat ini.
 
 Nama "Haria" sendiri berasal dari bahasa lokal yang memiliki makna filosofis mendalam bagi masyarakat setempat. Desa ini telah berkembang dari waktu ke waktu, namun tetap mempertahankan nilai-nilai budaya dan tradisi nenek moyang.
 
-Pada tahun 2020, Negeri Haria ditetapkan sebagai Desa Wisata oleh Pemerintah Kabupaten Sabu Raijua. Penetapan ini didasarkan pada potensi alam yang indah, budaya yang unik, serta kesiapan masyarakat dalam mengembangkan pariwisata berkelanjutan.
+Pada tahun 2020, Negeri Haria ditetapkan sebagai Desa Wisata oleh Pemerintah Kabupaten Maluku Tengah. Penetapan ini didasarkan pada potensi alam yang indah, budaya yang unik, serta kesiapan masyarakat dalam mengembangkan pariwisata berkelanjutan.
 
-Sejak ditetapkan sebagai desa wisata, Negeri Haria terus berkembang dan menjadi salah satu destinasi unggulan di Kabupaten Sabu Raijua. Berbagai program pemberdayaan masyarakat dan pengembangan infrastruktur terus dilakukan untuk meningkatkan kualitas layanan wisata.',
+Sejak ditetapkan sebagai desa wisata, Negeri Haria terus berkembang dan menjadi salah satu destinasi unggulan di Kabupaten Maluku Tengah. Berbagai program pemberdayaan masyarakat dan pengembangan infrastruktur terus dilakukan untuk meningkatkan kualitas layanan wisata.',
 
             'visi' => 'Mewujudkan Negeri Haria sebagai desa wisata yang mandiri, sejahtera, dan lestari dengan mengedepankan kearifan lokal dan pembangunan berkelanjutan untuk kesejahteraan masyarakat.',
 
@@ -69,7 +69,7 @@ Masa jabatan Kepala Desa adalah 6 tahun dan dapat dipilih kembali untuk satu kal
 7. Badan Permusyawaratan Desa (BPD)
    Lembaga yang melaksanakan fungsi pemerintahan yang anggotanya merupakan wakil dari penduduk desa berdasarkan keterwakilan wilayah dan ditetapkan secara demokratis.',
 
-            'address' => 'Negeri Haria, Kecamatan Sabu Barat, Kabupaten Sabu Raijua, Provinsi Nusa Tenggara Timur',
+            'address' => 'Negeri Haria, Kecamatan Saparua, Kabupaten Maluku Tengah, Provinsi Maluku',
             'phone' => '+62 380 xxxx',
             'email' => 'info@desaharia.id',
             'website' => 'https://desaharia.id',

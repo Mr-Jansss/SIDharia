@@ -32,6 +32,14 @@ class VillageStatisticController extends Controller
             'pendidikan_smp' => 'required|integer|min:0',
             'pendidikan_sma' => 'required|integer|min:0',
             'pendidikan_s1' => 'required|integer|min:0',
+            'pekerjaan_petani' => 'required|integer|min:0',
+            'pekerjaan_nelayan' => 'required|integer|min:0',
+            'pekerjaan_pedagang' => 'required|integer|min:0',
+            'pekerjaan_pns' => 'required|integer|min:0',
+            'pekerjaan_guru' => 'required|integer|min:0',
+            'pekerjaan_wiraswasta' => 'required|integer|min:0',
+            'pekerjaan_buruh' => 'required|integer|min:0',
+            'pekerjaan_lainnya' => 'required|integer|min:0',
         ]);
 
         $villageStatistic->update($validated);

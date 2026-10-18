@@ -223,7 +223,7 @@
                     </div>
                     <div class="text-white">
                         <h1 class="font-bold text-xl">Negeri Haria</h1>
-                        <p class="text-gray-200 text-xs">Kecamatan Sabu Barat</p>
+                        <p class="text-gray-200 text-xs">Kecamatan Saparua, Maluku Tengah</p>
                     </div>
                 </a>
 
@@ -364,7 +364,7 @@
                         Negeri adat dengan keindahan alam dan budaya lokal yang memikat di Kecamatan Saparua.
                     </p>
                     <div class="space-y-2 text-gray-300">
-                        <p><i class="mr-2 text-secondary fas fa-map-marker-alt"></i> Kec. Sabu Barat, Kab. Sabu Raijua</p>
+                        <p><i class="mr-2 text-secondary fas fa-map-marker-alt"></i> Kec. Saparua, Kab. Maluku Tengah</p>
                         <p><i class="mr-2 text-secondary fas fa-envelope"></i> info@desaharia.id</p>
                         <p><i class="mr-2 text-secondary fas fa-phone"></i> +62 xxx xxxx xxxx</p>
                     </div>

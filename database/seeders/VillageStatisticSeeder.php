@@ -32,6 +32,16 @@ class VillageStatisticSeeder extends Seeder
             'pendidikan_smp' => 210,
             'pendidikan_sma' => 180,
             'pendidikan_s1' => 95,
+            
+            // Data Pekerjaan
+            'pekerjaan_petani' => 320,
+            'pekerjaan_nelayan' => 280,
+            'pekerjaan_pedagang' => 150,
+            'pekerjaan_pns' => 85,
+            'pekerjaan_guru' => 65,
+            'pekerjaan_wiraswasta' => 180,
+            'pekerjaan_buruh' => 220,
+            'pekerjaan_lainnya' => 120,
         ]);
     }
 }

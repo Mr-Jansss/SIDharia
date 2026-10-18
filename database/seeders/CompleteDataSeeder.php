@@ -109,7 +109,7 @@ class CompleteDataSeeder extends Seeder
             ],
             [
                 'name' => 'Rumah Adat Haria',
-                'description' => 'Rumah adat tradisional yang masih terjaga dengan baik. Pengunjung dapat mempelajari arsitektur tradisional dan budaya masyarakat Sabu.',
+                'description' => 'Rumah adat tradisional yang masih terjaga dengan baik. Pengunjung dapat mempelajari arsitektur tradisional dan budaya masyarakat Maluku.',
                 'category' => 'budaya'
             ],
             [
@@ -124,7 +124,7 @@ class CompleteDataSeeder extends Seeder
             ],
             [
                 'name' => 'Upacara Adat Hemba',
-                'description' => 'Upacara adat tradisional yang diadakan setiap tahun untuk menghormati leluhur. Wisatawan dapat menyaksikan tarian tradisional dan ritual khas Sabu.',
+                'description' => 'Upacara adat tradisional yang diadakan setiap tahun untuk menghormati leluhur. Wisatawan dapat menyaksikan tarian tradisional dan ritual khas Maluku.',
                 'category' => 'budaya'
             ],
         ];
@@ -172,10 +172,10 @@ class CompleteDataSeeder extends Seeder
     private function seedProducts()
     {
         $products = [
-            ['name' => 'Kain Tenun Ikat Sabu', 'contact_name' => 'Ibu Maria', 'price' => 350000, 'phone' => '0812-3456-7890', 'desc' => 'Kain tenun ikat khas Sabu dengan motif tradisional. Dibuat dengan pewarna alami dan teknik tenun manual.'],
-            ['name' => 'Madu Hutan Asli', 'contact_name' => 'Bapak Yohanes', 'price' => 150000, 'phone' => '0813-4567-8901', 'desc' => 'Madu murni dari lebah hutan Sabu. Dikemas dalam botol 500ml, kaya manfaat untuk kesehatan.'],
+            ['name' => 'Kain Tenun Ikat Maluku', 'contact_name' => 'Ibu Maria', 'price' => 350000, 'phone' => '0812-3456-7890', 'desc' => 'Kain tenun ikat khas Maluku dengan motif tradisional. Dibuat dengan pewarna alami dan teknik tenun manual.'],
+            ['name' => 'Madu Hutan Asli', 'contact_name' => 'Bapak Yohanes', 'price' => 150000, 'phone' => '0813-4567-8901', 'desc' => 'Madu murni dari lebah hutan Maluku. Dikemas dalam botol 500ml, kaya manfaat untuk kesehatan.'],
             ['name' => 'Keripik Ubi Lokal', 'contact_name' => 'Ibu Ruth', 'price' => 25000, 'phone' => '0814-5678-9012', 'desc' => 'Keripik ubi renyah dengan rasa original dan balado. Dibuat dari ubi lokal pilihan.'],
-            ['name' => 'Ikan Asin Khas Sabu', 'contact_name' => 'Bapak Thomas', 'price' => 75000, 'phone' => '0815-6789-0123', 'desc' => 'Ikan asin kualitas premium hasil tangkapan nelayan lokal. Dijemur dengan cara tradisional.'],
+            ['name' => 'Ikan Asin Khas Maluku', 'contact_name' => 'Bapak Thomas', 'price' => 75000, 'phone' => '0815-6789-0123', 'desc' => 'Ikan asin kualitas premium hasil tangkapan nelayan lokal. Dijemur dengan cara tradisional.'],
             ['name' => 'Anyaman Bambu', 'contact_name' => 'Ibu Sari', 'price' => 125000, 'phone' => '0816-7890-1234', 'desc' => 'Keranjang dan wadah dari anyaman bambu. Cocok untuk dekorasi rumah dan cindera mata.'],
             ['name' => 'Kopi Robusta Haria', 'contact_name' => 'Bapak Petrus', 'price' => 85000, 'phone' => '0817-8901-2345', 'desc' => 'Kopi robusta berkualitas dari kebun warga. Aroma khas dan rasa yang nikmat. Kemasan 250gr.'],
         ];
@@ -203,7 +203,7 @@ class CompleteDataSeeder extends Seeder
         $posts = [
             [
                 'title' => 'Negeri Haria Raih Penghargaan Desa Wisata Terbaik 2026',
-                'content' => 'Negeri Haria berhasil meraih penghargaan sebagai Desa Wisata Terbaik tingkat Provinsi NTT tahun 2026. Penghargaan ini diberikan atas keberhasilan desa dalam mengembangkan potensi wisata alam dan budaya dengan tetap menjaga kelestarian lingkungan.
+                'content' => 'Negeri Haria berhasil meraih penghargaan sebagai Desa Wisata Terbaik tingkat Provinsi Maluku tahun 2026. Penghargaan ini diberikan atas keberhasilan desa dalam mengembangkan potensi wisata alam dan budaya dengan tetap menjaga kelestarian lingkungan.
 
 Kepala Negeri Haria, Bapak Yohanes Ndara, menyampaikan rasa syukur dan terima kasih kepada seluruh masyarakat yang telah berpartisipasi aktif dalam pengembangan desa wisata.
 
@@ -213,10 +213,10 @@ Kepala Negeri Haria, Bapak Yohanes Ndara, menyampaikan rasa syukur dan terima ka
                 'published_at' => now()->subDays(2),
             ],
             [
-                'title' => 'Festival Budaya Sabu 2026 Akan Digelar di Negeri Haria',
-                'content' => 'Pemerintah Kabupaten Sabu Raijua akan menggelar Festival Budaya Sabu 2026 di Negeri Haria pada tanggal 15-17 November 2026. Festival ini akan menampilkan berbagai atraksi budaya, pameran kerajinan, dan kuliner khas Sabu.
+                'title' => 'Festival Budaya Maluku 2026 Akan Digelar di Negeri Haria',
+                'content' => 'Pemerintah Kabupaten Maluku Tengah akan menggelar Festival Budaya Maluku 2026 di Negeri Haria pada tanggal 15-17 November 2026. Festival ini akan menampilkan berbagai atraksi budaya, pameran kerajinan, dan kuliner khas Maluku.
 
-Acara ini diharapkan dapat menarik wisatawan domestik dan mancanegara untuk mengenal lebih dekat budaya Sabu. Seluruh masyarakat desa diajak untuk berpartisipasi aktif dalam mensukseskan acara ini.',
+Acara ini diharapkan dapat menarik wisatawan domestik dan mancanegara untuk mengenal lebih dekat budaya Maluku. Seluruh masyarakat desa diajak untuk berpartisipasi aktif dalam mensukseskan acara ini.',
                 'category' => 'kegiatan',
                 'status' => 'published',
                 'published_at' => now()->subDays(5),

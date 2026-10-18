@@ -70,7 +70,7 @@
                     <span class="text-secondary">Negeri Haria</span>
                 </h1>
                 <p class="mb-8 text-gray-200 text-xl">
-                    Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Sabu Barat.
+                    Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Saparua, Maluku Tengah.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="{{ route('potentials') }}" class="bg-secondary hover:bg-yellow-400 px-8 py-3 rounded-lg font-semibold text-primary transition">

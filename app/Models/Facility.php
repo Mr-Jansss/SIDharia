@@ -9,7 +9,7 @@ class Facility extends Model
     protected $fillable = [
         'name',
         'description',
-        'icon',
+        'image',
         'latitude',
         'longitude',
     ];

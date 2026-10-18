@@ -21,7 +21,7 @@ class HeroSliderSeeder extends Seeder
         $sliders = [
             [
                 'title' => 'Selamat Datang di Negeri Haria',
-                'description' => 'Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Sabu Barat.',
+                'description' => 'Jelajahi keindahan alam, budaya lokal, dan produk unggulan dari masyarakat Haria di Kecamatan Saparua, Maluku Tengah.',
                 'image' => 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=600&fit=crop',
                 'order' => 1,
                 'is_active' => true,
