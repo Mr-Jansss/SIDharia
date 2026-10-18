@@ -6,92 +6,135 @@
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
-    /* Remove Leaflet watermark/attribution */
+    /* Remove Leaflet watermark */
     .leaflet-control-attribution {
         display: none !important;
     }
     
-    /* Compact map - smaller height */
+    /* MAP KECIL - 350px ONLY */
     #facilitiesMap {
         width: 100%;
-        height: 400px; /* Reduced from 650px */
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        height: 350px;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        border: 1px solid rgba(14, 165, 233, 0.2);
     }
     
     @media (max-width: 768px) {
         #facilitiesMap {
-            height: 350px; /* Even smaller on mobile */
-            border-radius: 0.5rem;
+            height: 300px;
         }
     }
     
-    /* Faster loading skeleton */
+    /* Loading state */
     #facilitiesMap.loading {
-        background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s ease-in-out infinite;
+        background: linear-gradient(135deg, #0EA5E9, #06B6D4, #14B8A6);
+        background-size: 200% 200%;
+        animation: shimmer 2s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+    #facilitiesMap.loading::after {
+        content: '🌊 Loading...';
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
     }
     
-    /* Compact marker */
+    @keyframes shimmer {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    /* Marker hover */
     .custom-marker {
-        transition: transform 0.2s ease;
+        transition: transform 0.2s;
+        cursor: pointer;
     }
     
     .custom-marker:hover {
         transform: scale(1.15);
     }
     
-    /* Smaller popup */
+    /* Popup compact */
     .leaflet-popup-content-wrapper {
+        padding: 0;
         border-radius: 0.75rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        border: 1px solid #3b82f6;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
+        border: 1px solid rgba(14, 165, 233, 0.3);
     }
     
     .leaflet-popup-content {
-        margin: 0.75rem;
-        font-family: inherit;
+        margin: 0 !important;
+        width: 250px !important;
+    }
+    
+    .popup-header {
+        background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+        padding: 0.75rem;
+    }
+    
+    .popup-body {
+        padding: 0.75rem;
+        background: white;
+    }
+    
+    .popup-footer {
+        padding: 0 0.75rem 0.75rem;
+        background: white;
     }
     
     .leaflet-popup-tip {
-        border-top-color: #3b82f6 !important;
+        background: #06B6D4 !important;
     }
     
-    /* Compact controls */
+    .leaflet-popup-close-button {
+        color: white !important;
+        font-size: 20px !important;
+        padding: 6px 10px !important;
+    }
+    
+    /* Controls compact */
     .leaflet-control-layers {
         border-radius: 0.5rem !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        border: 1px solid #e5e7eb !important;
-        font-size: 0.875rem !important;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2) !important;
+        border: 1px solid rgba(14, 165, 233, 0.2) !important;
+        font-size: 0.85rem !important;
     }
     
     .leaflet-control-zoom {
         border-radius: 0.5rem !important;
         overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        border: none !important;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2) !important;
+        border: 1px solid rgba(14, 165, 233, 0.2) !important;
     }
     
     .leaflet-control-zoom a {
-        font-size: 16px !important;
-        font-weight: bold !important;
-        background-color: white !important;
-        color: #1e40af !important;
-        width: 28px !important;
-        height: 28px !important;
-        line-height: 28px !important;
-        border: none !important;
+        width: 32px !important;
+        height: 32px !important;
+        line-height: 32px !important;
+        font-size: 18px !important;
+        background: white !important;
+        color: #0EA5E9 !important;
+        border-bottom: 1px solid rgba(14, 165, 233, 0.1) !important;
     }
     
     .leaflet-control-zoom a:hover {
-        background-color: #1e40af !important;
+        background: #0EA5E9 !important;
         color: white !important;
+    }
+    
+    /* Info badge */
+    .map-info-badge {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+        border: 1px solid rgba(14, 165, 233, 0.2);
+        font-size: 0.75rem;
     }
 </style>
 @endpush
@@ -112,7 +155,6 @@
         <div class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             @foreach($facilities as $facility)
             <div class="bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden transition">
-                <!-- Image -->
                 @if($facility->image)
                     <img src="{{ asset('storage/' . $facility->image) }}" alt="{{ $facility->name }}" class="w-full h-56 object-cover">
                 @else
@@ -122,17 +164,14 @@
                 @endif
 
                 <div class="p-6">
-                    <!-- Name -->
                     <h3 class="mb-4 font-bold text-primary text-2xl">{{ $facility->name }}</h3>
 
-                    <!-- Description -->
                     @if($facility->description)
                     <p class="mb-6 text-gray-600 leading-relaxed">
                         {{ $facility->description }}
                     </p>
                     @endif
 
-                    <!-- Location (GPS) -->
                     @if($facility->latitude && $facility->longitude)
                     <div class="mt-4 pt-4 border-t">
                         <div class="flex items-center mb-3 text-gray-600">
@@ -144,7 +183,7 @@
                         </div>
                         <a href="https://www.google.com/maps/search/?api=1&query={{ $facility->latitude }},{{ $facility->longitude }}" 
                            target="_blank"
-                           class="block bg-primary px-4 py-2 rounded-lg font-semibold text-white text-center transition hover-primary">
+                           class="block bg-primary hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white text-center transition">
                             <i class="mr-2 fas fa-directions"></i> Lihat di Google Maps
                         </a>
                     </div>
@@ -154,7 +193,6 @@
             @endforeach
         </div>
 
-        <!-- Pagination -->
         <div class="mt-12">
             {{ $facilities->links() }}
         </div>
@@ -177,11 +215,11 @@
         </div>
 
         <div class="mx-auto max-w-6xl">
-            <!-- Leaflet Map -->
+            <!-- Map Container -->
             <div class="shadow-2xl rounded-lg overflow-hidden">
                 <div id="facilitiesMap"></div>
             </div>
-
+            
             <!-- Map Info -->
             <div class="bg-blue-50 mt-6 p-4 border border-blue-200 rounded-lg">
                 <div class="flex items-start">
@@ -221,133 +259,177 @@
 </section>
 @endif
 
+@endsection
+
 @push('scripts')
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mapElement = document.getElementById('facilitiesMap');
-        mapElement.classList.add('loading');
+document.addEventListener('DOMContentLoaded', function() {
+    const mapEl = document.getElementById('facilitiesMap');
+    if (!mapEl) return;
+    
+    mapEl.classList.add('loading');
 
-        // Initialize map with better performance settings
+    try {
+        // Init map - Negeri Haria center
         const map = L.map('facilitiesMap', {
             zoomControl: true,
             scrollWheelZoom: true,
-            doubleClickZoom: true,
-            touchZoom: true,
-            zoomAnimation: true,
-            fadeAnimation: true,
-            markerZoomAnimation: true,
-            preferCanvas: true // Better performance
+            preferCanvas: true
         }).setView([-3.582142, 128.624756], 14);
 
-        // Satellite View - Default (faster loading)
-        const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            maxZoom: 18,
-            attribution: '',
-            updateWhenIdle: true, // Load tiles only when map stops moving
-            keepBuffer: 2 // Reduce memory usage
+        // OpenStreetMap (DEFAULT - ALWAYS WORKS)
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: ''
         });
 
-        // Street View
-        const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '',
-            updateWhenIdle: true
+        // CartoDB Voyager (Street map with ocean colors)
+        const street = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19,
+            attribution: ''
         });
 
-        // Add default layer
-        satelliteLayer.addTo(map);
+        // Stamen Terrain (Topographic with coastal detail)
+        const terrain = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg', {
+            maxZoom: 18,
+            attribution: ''
+        });
+
+        // Add default layer (OSM - most reliable)
+        osm.addTo(map);
         
-        // Remove loading state when tiles load
-        satelliteLayer.on('load', function() {
-            mapElement.classList.remove('loading');
-        });
+        setTimeout(() => mapEl.classList.remove('loading'), 1500);
 
-        // Layer Control - Collapsed to save space
-        const baseMaps = {
-            "🛰️ Satelit": satelliteLayer,
-            "🗺️ Peta": streetLayer
-        };
-
-        L.control.layers(baseMaps, null, {
+        // Layer control - 3 FREE options
+        L.control.layers({
+            "🗺️ Standar": osm,
+            "🌊 Pesisir": street,
+            "⛰️ Terrain": terrain
+        }, null, {
             position: 'topright',
-            collapsed: true // Collapsed by default to save space
+            collapsed: false
         }).addTo(map);
 
-        // Compact marker icon (smaller, no animation)
-        const customIcon = L.divIcon({
-            html: '<i class="fas fa-map-marker-alt" style="font-size: 32px; color: #3b82f6; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));"></i>',
-            className: 'custom-marker',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32]
-        });
+        // Marker icons
+        const icons = {
+            blue: L.divIcon({
+                html: '<div style="background:#3B82F6;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(59,130,246,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-landmark" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            green: L.divIcon({
+                html: '<div style="background:#10B981;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(16,185,129,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-hospital" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            orange: L.divIcon({
+                html: '<div style="background:#F59E0B;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(245,158,11,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-school" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            cyan: L.divIcon({
+                html: '<div style="background:#06B6D4;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(6,182,212,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-fish" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            purple: L.divIcon({
+                html: '<div style="background:#8B5CF6;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(139,92,246,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-mosque" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            }),
+            pink: L.divIcon({
+                html: '<div style="background:#EC4899;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(236,72,153,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-map-marker-alt" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
+                className: 'custom-marker',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            })
+        };
 
-        // Add markers
+        function getIcon(name) {
+            const n = name.toLowerCase();
+            if (n.includes('kantor') || n.includes('balai') || n.includes('pemerintah')) return icons.blue;
+            if (n.includes('puskesmas') || n.includes('klinik') || n.includes('kesehatan')) return icons.green;
+            if (n.includes('sekolah') || n.includes('sd') || n.includes('smp') || n.includes('sma')) return icons.orange;
+            if (n.includes('pelabuhan') || n.includes('dermaga') || n.includes('nelayan') || n.includes('perikanan')) return icons.cyan;
+            if (n.includes('masjid') || n.includes('gereja') || n.includes('musholla')) return icons.purple;
+            return icons.pink;
+        }
+
+        // Add facilities
         const facilities = @json($facilities->filter(function($f) { return $f->latitude && $f->longitude; })->values());
-        const markers = [];
+        const bounds = [];
         
-        facilities.forEach(facility => {
-            const marker = L.marker([facility.latitude, facility.longitude], {
-                icon: customIcon
+        facilities.forEach(f => {
+            const marker = L.marker([f.latitude, f.longitude], {
+                icon: getIcon(f.name),
+                riseOnHover: true
             }).addTo(map);
 
-            markers.push([facility.latitude, facility.longitude]);
+            bounds.push([f.latitude, f.longitude]);
 
-            // Compact popup
-            let popupContent = `
-                <div style="min-width: 200px; max-width: 280px;">
-                    ${facility.image ? `
-                        <img src="/storage/${facility.image}" 
-                             alt="${facility.name}" 
-                             style="width: 100%; height: 100px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 0.5rem;">
-                    ` : ''}
-                    <h3 style="font-weight: 700; font-size: 1rem; color: #1e40af; margin-bottom: 0.375rem;">${facility.name}</h3>
-                    ${facility.description ? `<p style="font-size: 0.8rem; color: #4b5563; margin-bottom: 0.5rem; line-height: 1.4;">${facility.description.substring(0, 80)}${facility.description.length > 80 ? '...' : ''}</p>` : ''}
-                    <a href="https://www.google.com/maps/search/?api=1&query=${facility.latitude},${facility.longitude}" 
+            const popup = `
+                <div class="popup-header">
+                    <h3 style="margin:0;font-size:0.9rem;font-weight:700;color:white">${f.name}</h3>
+                </div>
+                <div class="popup-body">
+                    ${f.image ? `<img src="/storage/${f.image}" alt="${f.name}" style="width:100%;height:100px;object-fit:cover;border-radius:0.5rem;margin-bottom:0.5rem">` : ''}
+                    ${f.description ? `<p style="font-size:0.75rem;color:#374151;margin-bottom:0.5rem;line-height:1.3">${f.description.substring(0, 80)}...</p>` : ''}
+                </div>
+                <div class="popup-footer">
+                    <div style="font-size:0.7rem;color:#6B7280;margin-bottom:0.4rem">
+                        <i class="fas fa-map-marker-alt" style="color:#0EA5E9"></i> ${f.latitude}, ${f.longitude}
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${f.latitude},${f.longitude}" 
                        target="_blank"
-                       style="display: block; background: #1e40af; color: white; padding: 0.5rem; border-radius: 0.375rem; text-decoration: none; font-size: 0.8rem; font-weight: 600; text-align: center;">
+                       style="display:block;background:linear-gradient(135deg,#0EA5E9,#06B6D4);color:white;padding:0.4rem 0.6rem;border-radius:0.4rem;text-decoration:none;font-size:0.75rem;font-weight:600;text-align:center">
                         <i class="fas fa-directions"></i> Navigasi
                     </a>
                 </div>
             `;
 
-            marker.bindPopup(popupContent, {
-                maxWidth: 280,
-                className: 'custom-popup'
-            });
+            marker.bindPopup(popup, { maxWidth: 250 });
         });
 
-        // Auto-fit with better performance
-        if (markers.length > 1) {
-            map.fitBounds(L.latLngBounds(markers), { 
-                padding: [30, 30],
-                maxZoom: 15,
-                animate: false // Faster initial load
-            });
-        } else if (markers.length === 1) {
-            map.setView(markers[0], 15, { animate: false });
+        // Fit bounds
+        if (bounds.length > 0) {
+            map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
         }
 
-        // Compact info badge
-        const info = L.control({position: 'bottomleft'});
+        // Info badge
+        const info = L.control({ position: 'bottomleft' });
         info.onAdd = function() {
-            const div = L.DomUtil.create('div', 'info');
-            div.style.cssText = `
-                background: rgba(255, 255, 255, 0.95);
-                padding: 0.5rem 0.75rem;
-                border-radius: 0.5rem;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                font-size: 0.75rem;
-                color: #4b5563;
-                border: 1px solid #e5e7eb;
+            const div = L.DomUtil.create('div', 'map-info-badge');
+            div.innerHTML = `
+                <div style="display:flex;align-items:center">
+                    <i class="fas fa-map-marked-alt" style="color:#0EA5E9;font-size:1rem;margin-right:0.4rem"></i>
+                    <div>
+                        <strong style="color:#0EA5E9;font-size:0.75rem">Negeri Haria</strong>
+                        <span style="color:#6B7280;font-size:0.65rem;display:block">${facilities.length} Fasilitas</span>
+                    </div>
+                </div>
             `;
-            div.innerHTML = `<strong style="color: #1e40af;">📍 ${facilities.length}</strong> Fasilitas`;
             return div;
         };
         info.addTo(map);
-    });
+
+    } catch (error) {
+        console.error('Map error:', error);
+        mapEl.classList.remove('loading');
+        mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#6B7280"><p>Error loading map</p></div>';
+    }
+});
 </script>
 @endpush
-@endsection
