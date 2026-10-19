@@ -268,41 +268,52 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mapEl = document.getElementById('facilitiesMap');
     if (!mapEl) return;
-    
-    mapEl.classList.add('loading');
 
     try {
-        // Init map - Negeri Haria center
+        // Init map INSTANTLY - no loading delay
         const map = L.map('facilitiesMap', {
             zoomControl: true,
             scrollWheelZoom: true,
-            preferCanvas: true
+            preferCanvas: true,
+            fadeAnimation: false,        // Disable fade for instant render
+            zoomAnimation: false,        // Disable zoom animation
+            markerZoomAnimation: false   // Disable marker animation
         }).setView([-3.582142, 128.624756], 14);
 
-        // OpenStreetMap (DEFAULT - ALWAYS WORKS)
+        // OpenStreetMap (FASTEST & MOST RELIABLE)
         const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: ''
+            attribution: '',
+            updateWhenIdle: false,       // Update immediately
+            updateWhenZooming: false,    // Don't update while zooming (faster)
+            keepBuffer: 2                // Keep minimal tiles in buffer
         });
 
-        // CartoDB Voyager (Street map with ocean colors)
+        // CartoDB Voyager (Ocean theme)
         const street = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
             maxZoom: 19,
-            attribution: ''
+            attribution: '',
+            updateWhenIdle: false,
+            updateWhenZooming: false,
+            keepBuffer: 2
         });
 
-        // Stamen Terrain (Topographic with coastal detail)
+        // Stamen Terrain
         const terrain = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}.jpg', {
             maxZoom: 18,
-            attribution: ''
+            attribution: '',
+            updateWhenIdle: false,
+            updateWhenZooming: false,
+            keepBuffer: 2
         });
 
-        // Add default layer (OSM - most reliable)
+        // Add default layer IMMEDIATELY
         osm.addTo(map);
         
-        setTimeout(() => mapEl.classList.remove('loading'), 1500);
+        // Remove loading state RIGHT AWAY
+        mapEl.classList.remove('loading');
 
-        // Layer control - 3 FREE options
+        // Layer control
         L.control.layers({
             "🗺️ Standar": osm,
             "🌊 Pesisir": street,
@@ -312,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             collapsed: false
         }).addTo(map);
 
-        // Marker icons
+        // Marker icons - compact inline
         const icons = {
             blue: L.divIcon({
                 html: '<div style="background:#3B82F6;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(59,130,246,0.4);border:2px solid white;display:flex;align-items:center;justify-content:center"><i class="fas fa-landmark" style="color:white;font-size:12px;transform:rotate(45deg)"></i></div>',
@@ -368,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return icons.pink;
         }
 
-        // Add facilities
+        // Add facilities FAST
         const facilities = @json($facilities->filter(function($f) { return $f->latitude && $f->longitude; })->values());
         const bounds = [];
         
@@ -403,9 +414,13 @@ document.addEventListener('DOMContentLoaded', function() {
             marker.bindPopup(popup, { maxWidth: 250 });
         });
 
-        // Fit bounds
+        // Fit bounds WITHOUT animation for instant display
         if (bounds.length > 0) {
-            map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+            map.fitBounds(bounds, { 
+                padding: [30, 30], 
+                maxZoom: 14,
+                animate: false  // NO ANIMATION - instant
+            });
         }
 
         // Info badge
@@ -428,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
         console.error('Map error:', error);
         mapEl.classList.remove('loading');
-        mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#6B7280"><p>Error loading map</p></div>';
+        mapEl.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#6B7280"><p>Gagal memuat peta</p></div>';
     }
 });
 </script>

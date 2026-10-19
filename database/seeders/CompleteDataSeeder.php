@@ -172,17 +172,18 @@ class CompleteDataSeeder extends Seeder
     private function seedProducts()
     {
         $products = [
-            ['name' => 'Kain Tenun Ikat Maluku', 'contact_name' => 'Ibu Maria', 'price' => 350000, 'phone' => '0812-3456-7890', 'desc' => 'Kain tenun ikat khas Maluku dengan motif tradisional. Dibuat dengan pewarna alami dan teknik tenun manual.'],
-            ['name' => 'Madu Hutan Asli', 'contact_name' => 'Bapak Yohanes', 'price' => 150000, 'phone' => '0813-4567-8901', 'desc' => 'Madu murni dari lebah hutan Maluku. Dikemas dalam botol 500ml, kaya manfaat untuk kesehatan.'],
-            ['name' => 'Keripik Ubi Lokal', 'contact_name' => 'Ibu Ruth', 'price' => 25000, 'phone' => '0814-5678-9012', 'desc' => 'Keripik ubi renyah dengan rasa original dan balado. Dibuat dari ubi lokal pilihan.'],
-            ['name' => 'Ikan Asin Khas Maluku', 'contact_name' => 'Bapak Thomas', 'price' => 75000, 'phone' => '0815-6789-0123', 'desc' => 'Ikan asin kualitas premium hasil tangkapan nelayan lokal. Dijemur dengan cara tradisional.'],
-            ['name' => 'Anyaman Bambu', 'contact_name' => 'Ibu Sari', 'price' => 125000, 'phone' => '0816-7890-1234', 'desc' => 'Keranjang dan wadah dari anyaman bambu. Cocok untuk dekorasi rumah dan cindera mata.'],
-            ['name' => 'Kopi Robusta Haria', 'contact_name' => 'Bapak Petrus', 'price' => 85000, 'phone' => '0817-8901-2345', 'desc' => 'Kopi robusta berkualitas dari kebun warga. Aroma khas dan rasa yang nikmat. Kemasan 250gr.'],
+            ['name' => 'Kain Tenun Ikat Maluku', 'contact_name' => 'Ibu Maria', 'price' => 350000, 'phone' => '081340089147', 'desc' => 'Kain tenun ikat khas Maluku dengan motif tradisional. Dibuat dengan pewarna alami dan teknik tenun manual.', 'img_id' => 28],
+            ['name' => 'Madu Hutan Asli', 'contact_name' => 'Bapak Yohanes', 'price' => 150000, 'phone' => '081340089147', 'desc' => 'Madu murni dari lebah hutan Maluku. Dikemas dalam botol 500ml, kaya manfaat untuk kesehatan.', 'img_id' => 225],
+            ['name' => 'Keripik Ubi Lokal', 'contact_name' => 'Ibu Ruth', 'price' => 25000, 'phone' => '081340089147', 'desc' => 'Keripik ubi renyah dengan rasa original dan balado. Dibuat dari ubi lokal pilihan.', 'img_id' => 431],
+            ['name' => 'Ikan Asin Khas Maluku', 'contact_name' => 'Bapak Thomas', 'price' => 75000, 'phone' => '081340089147', 'desc' => 'Ikan asin kualitas premium hasil tangkapan nelayan lokal. Dijemur dengan cara tradisional.', 'img_id' => 292],
+            ['name' => 'Anyaman Bambu', 'contact_name' => 'Ibu Sari', 'price' => 125000, 'phone' => '081340089147', 'desc' => 'Keranjang dan wadah dari anyaman bambu. Cocok untuk dekorasi rumah dan cindera mata.', 'img_id' => 152],
+            ['name' => 'Kopi Robusta Haria', 'contact_name' => 'Bapak Petrus', 'price' => 85000, 'phone' => '081340089147', 'desc' => 'Kopi robusta berkualitas dari kebun warga. Aroma khas dan rasa yang nikmat. Kemasan 250gr.', 'img_id' => 312],
         ];
 
         foreach ($products as $index => $data) {
             $imageName = 'products/product-' . ($index + 1) . '.jpg';
-            $imageContent = file_get_contents('https://picsum.photos/400/400?random=' . (100 + $index));
+            // Gunakan ID spesifik dari Lorem Picsum untuk gambar yang konsisten dan relevan
+            $imageContent = file_get_contents('https://picsum.photos/id/' . $data['img_id'] . '/400/400');
             Storage::disk('public')->put($imageName, $imageContent);
 
             Product::create([
