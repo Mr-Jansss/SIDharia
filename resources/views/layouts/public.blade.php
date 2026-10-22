@@ -217,15 +217,17 @@
         <div class="mx-auto px-4 container">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo & Brand -->
-                <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                    <div class="flex justify-center items-center bg-white p-1 rounded-full w-12 h-12">
+                <div class="flex items-center space-x-3">
+                    <!-- Logo yang bisa diklik untuk login admin -->
+                    <a href="{{ route('login') }}" class="flex justify-center items-center bg-white hover:bg-gray-100 p-1 rounded-full w-12 h-12 hover:scale-110 transition-all duration-300" title="Login Admin">
                         <img src="{{ asset('storage/logo/logonegeriharia.png') }}" alt="Logo Negeri Haria" class="w-full h-full object-contain">
-                    </div>
-                    <div class="text-white">
+                    </a>
+                    <!-- Text Brand -->
+                    <a href="{{ route('home') }}" class="text-white">
                         <h1 class="font-bold text-xl">Negeri Haria</h1>
                         <p class="text-gray-200 text-xs">Kecamatan Saparua, Maluku Tengah</p>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="lg:hidden text-white">
@@ -249,6 +251,7 @@
                             <a href="{{ route('profile.visi-misi') }}"><i class="fas fa-bullseye"></i> Visi & Misi</a>
                             <a href="{{ route('profile.pemerintahan') }}"><i class="fas fa-landmark"></i> Pemerintahan</a>
                             <a href="{{ route('profile.struktur-organisasi') }}"><i class="fas fa-sitemap"></i> Struktur Organisasi</a>
+                            <a href="{{ route('profile.peraturan-negeri') }}"><i class="fas fa-gavel"></i> Peraturan Negeri</a>
                         </div>
                     </div>
 
@@ -281,18 +284,6 @@
                             <a href="{{ route('pengaduan.check-status') }}"><i class="fas fa-search"></i> Cek Status Pengaduan</a>
                         </div>
                     </div>
-
-                    @auth
-                        <!-- Jika sudah login, tampilkan link ke Dashboard -->
-                        <a href="{{ route('admin.dashboard') }}" class="flex items-center bg-secondary hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-primary transition">
-                            <i class="mr-2 fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    @else
-                        <!-- Jika belum login, tampilkan tombol Login -->
-                        <a href="{{ route('login') }}" class="flex items-center bg-secondary hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-primary transition">
-                            <i class="mr-2 fas fa-sign-in-alt"></i> Login Admin
-                        </a>
-                    @endauth
                 </nav>
             </div>
 
@@ -333,16 +324,6 @@
                             🔎 Cek Status Pengaduan
                         </a>
                     </div>
-
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}" class="bg-secondary hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-primary text-center transition">
-                            <i class="mr-2 fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="bg-secondary hover:bg-yellow-400 px-4 py-2 rounded-lg font-semibold text-primary text-center transition">
-                            <i class="mr-2 fas fa-sign-in-alt"></i> Login Admin
-                        </a>
-                    @endauth
                 </div>
             </nav>
         </div>

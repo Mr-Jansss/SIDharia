@@ -25,7 +25,7 @@
                         @endif
                         <div class="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
                             <a href="{{ route('potentials') }}" class="bg-secondary hover:bg-yellow-400 px-8 py-3 rounded-lg font-semibold text-primary transition">
-                                Jelajahi Potensi
+                                Jelajahi Potensi Negeri
                             </a>
                             <a href="{{ route('products') }}" class="bg-white hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-primary transition">
                                 Produk UMKM
@@ -170,7 +170,7 @@
 <section class="bg-gray-50 py-16">
     <div class="mx-auto px-4 container">
         <div class="mb-12 text-center">
-            <h2 class="mb-4 font-bold text-primary text-4xl">Potensi Wisata Unggulan</h2>
+            <h2 class="mb-4 font-bold text-primary text-4xl">Potensi Unggulan</h2>
             <p class="text-gray-600 text-lg">Temukan destinasi wisata menarik di Negeri Haria</p>
         </div>
 
@@ -200,7 +200,7 @@
 
         <div class="mt-10 text-center">
             <a href="{{ route('potentials') }}" class="inline-block bg-primary px-8 py-3 rounded-lg font-semibold text-white transition hover-primary">
-                Lihat Semua Wisata
+                Lihat Semua Potensi Negeri
             </a>
         </div>
     </div>

@@ -92,6 +92,13 @@ class PublicController extends Controller
         return view('public.profile-struktur-organisasi', compact('villageProfile', 'officials'));
     }
 
+    // Profil Negeri - Peraturan Negeri
+    public function profilePeraturanNegeri()
+    {
+        $villageProfile = VillageProfile::first();
+        return view('public.profile-peraturan-negeri', compact('villageProfile'));
+    }
+
     // Statistik Negeri
     public function statistics()
     {

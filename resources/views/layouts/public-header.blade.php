@@ -166,6 +166,9 @@
                         <a href="{{ route('profile.struktur-organisasi') }}" class="dropdown-item">
                             <i class="mr-2 text-primary fas fa-sitemap"></i> Struktur Organisasi
                         </a>
+                        <a href="{{ route('profile.peraturan-negeri') }}" class="dropdown-item">
+                            <i class="mr-2 text-primary fas fa-gavel"></i> Peraturan Negeri
+                        </a>
                     </div>
                 </div>
 

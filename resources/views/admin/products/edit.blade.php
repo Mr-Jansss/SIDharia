@@ -1,60 +1,144 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Produk UMKM</h2></x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-gray-800 text-xl leading-tight">Edit Produk UMKM</h2>
+    </x-slot>
 
     <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto sm:px-6 lg:px-8 max-w-3xl">
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
                 <div class="p-6">
                     <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
-                        @if($product->image_path)
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Foto Saat Ini</label>
-                                <img src="{{ Storage::url($product->image_path) }}" alt="{{ $product->name }}" class="w-48 h-32 object-cover rounded">
+                        <!-- Current Image Preview -->
+                        @if($product->image)
+                            <div class="bg-gray-50 mb-6 p-4 rounded-lg">
+                                <label class="block mb-2 font-medium text-gray-700 text-sm">Foto Saat Ini</label>
+                                <img src="{{ asset('storage/' . $product->image) }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="shadow-md rounded-lg w-64 h-48 object-cover">
+                                <p class="mt-2 text-gray-500 text-xs">
+                                    <i class="fas fa-info-circle"></i> Upload foto baru untuk mengganti
+                                </p>
                             </div>
                         @endif
 
+                        <!-- Nama Produk -->
                         <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Produk</label>
-                            <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            <label for="name" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Nama Produk <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" 
+                                   name="name" 
+                                   id="name" 
+                                   value="{{ old('name', $product->name) }}" 
+                                   required 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('name') border-red-500 @enderror">
+                            @error('name')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Nama Kontak/Pemilik -->
                         <div class="mb-4">
-                            <label for="owner_name" class="block text-sm font-medium text-gray-700 mb-2">Nama Pemilik/Produsen</label>
-                            <input type="text" name="owner_name" id="owner_name" value="{{ old('owner_name', $product->owner_name) }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            @error('owner_name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            <label for="contact_name" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Nama Pemilik/Produsen <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" 
+                                   name="contact_name" 
+                                   id="contact_name" 
+                                   value="{{ old('contact_name', $product->contact_name) }}" 
+                                   required 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('contact_name') border-red-500 @enderror">
+                            @error('contact_name')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Harga -->
                         <div class="mb-4">
-                            <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Harga (Rp)</label>
-                            <input type="number" name="price" id="price" value="{{ old('price', $product->price) }}" required min="0" step="1000" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            @error('price')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            <label for="price" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Harga (Rp) <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" 
+                                   name="price" 
+                                   id="price" 
+                                   value="{{ old('price', $product->price) }}" 
+                                   required 
+                                   min="0" 
+                                   step="1000" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('price') border-red-500 @enderror">
+                            @error('price')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Nomor Kontak -->
                         <div class="mb-4">
-                            <label for="whatsapp_number" class="block text-sm font-medium text-gray-700 mb-2">Nomor WhatsApp</label>
-                            <input type="text" name="whatsapp_number" id="whatsapp_number" value="{{ old('whatsapp_number', $product->whatsapp_number) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            @error('whatsapp_number')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            <label for="contact_phone" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Nomor WhatsApp/Telepon
+                            </label>
+                            <input type="text" 
+                                   name="contact_phone" 
+                                   id="contact_phone" 
+                                   value="{{ old('contact_phone', $product->contact_phone) }}" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('contact_phone') border-red-500 @enderror">
+                            <p class="mt-1 text-gray-500 text-xs">
+                                <i class="fas fa-info-circle"></i> Format: 081xxx atau 628xxx (tanpa spasi)
+                            </p>
+                            @error('contact_phone')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
+                        <!-- Deskripsi -->
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Produk</label>
-                            <textarea name="description" id="description" rows="5" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">{{ old('description', $product->description) }}</textarea>
-                            @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                            <label for="description" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Deskripsi Produk <span class="text-red-500">*</span>
+                            </label>
+                            <textarea name="description" 
+                                      id="description" 
+                                      rows="5" 
+                                      required 
+                                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('description') border-red-500 @enderror">{{ old('description', $product->description) }}</textarea>
+                            @error('description')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        <div class="mb-4">
-                            <label for="image" class="block text-sm font-medium text-gray-700 mb-2">Foto Baru (Opsional)</label>
-                            <input type="file" name="image" id="image" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                            @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        <!-- Foto Baru -->
+                        <div class="mb-6">
+                            <label for="image" class="block mb-2 font-medium text-gray-700 text-sm">
+                                Foto Produk Baru
+                            </label>
+                            <input type="file" 
+                                   name="image" 
+                                   id="image" 
+                                   accept="image/jpeg,image/png,image/jpg,image/webp" 
+                                   class="mt-1 block w-full text-sm text-gray-500 
+                                          file:mr-4 file:py-2 file:px-4 
+                                          file:rounded file:border-0 
+                                          file:text-sm file:font-semibold 
+                                          file:bg-blue-50 file:text-blue-700 
+                                          hover:file:bg-blue-100 
+                                          @error('image') border-red-500 @enderror">
+                            <p class="mt-1 text-gray-500 text-xs">
+                                <i class="fas fa-info-circle"></i> Opsional - Biarkan kosong jika tidak ingin mengganti foto
+                            </p>
+                            @error('image')
+                                <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        <div class="flex items-center justify-end space-x-3 mt-6">
-                            <a href="{{ route('admin.products.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Batal</a>
-                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                        <!-- Actions -->
+                        <div class="flex justify-end items-center space-x-3 pt-4 border-t">
+                            <a href="{{ route('admin.products.index') }}" class="bg-gray-300 hover:bg-gray-400 px-6 py-2 rounded font-bold text-gray-800 transition">
+                                <i class="mr-1 fas fa-times"></i> Batal
+                            </a>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-bold text-white transition">
+                                <i class="mr-1 fas fa-save"></i> Update Produk
+                            </button>
                         </div>
                     </form>
                 </div>

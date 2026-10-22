@@ -14,6 +14,7 @@ class VillageProfile extends Model
         'misi',
         'pemerintahan',
         'struktur_organisasi',
+        'peraturan_negeri',
         'logo',
         'address',
         'phone',

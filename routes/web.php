@@ -13,6 +13,7 @@ Route::get('/profil/sejarah', [PublicController::class, 'profileSejarah'])->name
 Route::get('/profil/visi-misi', [PublicController::class, 'profileVisiMisi'])->name('profile.visi-misi');
 Route::get('/profil/pemerintahan', [PublicController::class, 'profilePemerintahan'])->name('profile.pemerintahan');
 Route::get('/profil/struktur-organisasi', [PublicController::class, 'profileStrukturOrganisasi'])->name('profile.struktur-organisasi');
+Route::get('/profil/peraturan-negeri', [PublicController::class, 'profilePeraturanNegeri'])->name('profile.peraturan-negeri');
 
 // Statistics Route
 Route::get('/statistik', [PublicController::class, 'statistics'])->name('statistics');

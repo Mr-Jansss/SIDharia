@@ -31,6 +31,9 @@
                                 <button type="button" onclick="switchTab('struktur')" id="tab-struktur" class="px-1 py-4 border-transparent hover:border-gray-300 border-b-2 font-medium text-gray-500 hover:text-gray-700 text-sm tab-button">
                                     Struktur Organisasi
                                 </button>
+                                <button type="button" onclick="switchTab('peraturan')" id="tab-peraturan" class="px-1 py-4 border-transparent hover:border-gray-300 border-b-2 font-medium text-gray-500 hover:text-gray-700 text-sm tab-button">
+                                    Peraturan Negeri
+                                </button>
                             </nav>
                         </div>
 
@@ -167,6 +170,19 @@
                             </div>
                         </div>
 
+                        <!-- Tab: Peraturan Negeri -->
+                        <div id="content-peraturan" class="hidden space-y-4 tab-content">
+                            <div>
+                                <label for="peraturan_negeri" class="block font-medium text-gray-700 text-sm">Peraturan Negeri</label>
+                                <textarea name="peraturan_negeri" id="peraturan_negeri" rows="15"
+                                    class="block shadow-sm mt-1 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full">{{ old('peraturan_negeri', $villageProfile->peraturan_negeri) }}</textarea>
+                                <p class="mt-1 text-gray-500 text-xs">Jelaskan peraturan-peraturan yang berlaku di Negeri Haria</p>
+                                @error('peraturan_negeri')
+                                    <p class="mt-1 text-red-500 text-xs">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="flex items-center gap-4 mt-6 pt-6 border-t">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded font-bold text-white">
                                 Simpan Perubahan
@@ -204,7 +220,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
             
-            if (tabParam && ['overview', 'sejarah', 'visi', 'pemerintahan', 'struktur'].includes(tabParam)) {
+            if (tabParam && ['overview', 'sejarah', 'visi', 'pemerintahan', 'struktur', 'peraturan'].includes(tabParam)) {
                 switchTab(tabParam);
             } else {
                 // Default to overview
