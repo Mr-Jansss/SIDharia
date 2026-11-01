@@ -165,13 +165,31 @@
             border-radius: 0.5rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             padding: 0.5rem 0;
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
             z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+            transform: translateY(-10px);
         }
 
         .dropdown:hover .dropdown-menu {
             display: block;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
             animation: fadeInDown 0.3s ease-out;
+        }
+
+        /* Perpanjang area hover dengan pseudo-element */
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: -20px;
+            right: -20px;
+            height: 20px;
+            z-index: 99;
         }
 
         .dropdown-menu a {
@@ -255,6 +273,19 @@
                         </div>
                     </div>
 
+                    <!-- Dropdown Transparansi Keuangan -->
+                    <div class="dropdown">
+                        <a href="#" class="text-white hover:text-secondary transition {{ request()->routeIs('transparency.*') ? 'text-secondary font-semibold' : '' }}">
+                            Transparansi <i class="ml-1 text-xs fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{{ route('transparency.apb-negeri') }}"><i class="fas fa-file-invoice-dollar"></i> APB Negeri</a>
+                            <a href="{{ route('transparency.realisasi-anggaran') }}"><i class="fas fa-chart-line"></i> Laporan Realisasi Anggaran</a>
+                            <a href="{{ route('transparency.blt-bansos') }}"><i class="fas fa-hand-holding-usd"></i> Penyaluran BLT & Bansos</a>
+                            <a href="{{ route('transparency.lppd') }}"><i class="fas fa-file-alt"></i> LPPD / LKPPD</a>
+                        </div>
+                    </div>
+
                     <a href="{{ route('potentials') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('potentials') ? 'text-secondary font-semibold' : '' }}">
                         Potensi Negeri
                     </a>
@@ -273,13 +304,10 @@
 
                     <!-- Dropdown Layanan -->
                     <div class="dropdown">
-                        <a href="#" class="text-white hover:text-secondary transition {{ request()->routeIs('pengajuan-surat.*') || request()->routeIs('pengaduan.*') ? 'text-secondary font-semibold' : '' }}">
+                        <a href="#" class="text-white hover:text-secondary transition {{ request()->routeIs('pengaduan.*') ? 'text-secondary font-semibold' : '' }}">
                             Layanan <i class="ml-1 text-xs fas fa-chevron-down"></i>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="{{ route('pengajuan-surat.create') }}"><i class="fas fa-file-alt"></i> Pengajuan Surat</a>
-                            <a href="{{ route('pengajuan-surat.check-status') }}"><i class="fas fa-search"></i> Cek Status Surat</a>
-                            <div class="my-1 border-gray-200 border-t"></div>
                             <a href="{{ route('pengaduan.create') }}"><i class="fas fa-bullhorn"></i> Pengaduan Masyarakat</a>
                             <a href="{{ route('pengaduan.check-status') }}"><i class="fas fa-search"></i> Cek Status Pengaduan</a>
                         </div>
@@ -287,46 +315,9 @@
                 </nav>
             </div>
 
-            <!-- Mobile Navigation -->
-            <nav id="mobile-menu" class="hidden lg:hidden pb-4">
-                <div class="flex flex-col space-y-3">
-                    <a href="{{ route('home') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('home') ? 'text-secondary font-semibold' : '' }}">
-                        Beranda
-                    </a>
-                    <a href="{{ route('profile') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('profile') ? 'text-secondary font-semibold' : '' }}">
-                        Profil Negeri
-                    </a>
-                    <a href="{{ route('potentials') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('potentials') ? 'text-secondary font-semibold' : '' }}">
-                        Potensi Negeri
-                    </a>
-                    <a href="{{ route('facilities') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('facilities') ? 'text-secondary font-semibold' : '' }}">
-                        Fasilitas
-                    </a>
-                    <a href="{{ route('products') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('products') ? 'text-secondary font-semibold' : '' }}">
-                        Produk UMKM
-                    </a>
-                    <a href="{{ route('posts') }}" class="text-white hover:text-secondary transition {{ request()->routeIs('posts') ? 'text-secondary font-semibold' : '' }}">
-                        Berita
-                    </a>
-
-                    <div class="mt-2 pt-3 border-blue-400 border-t">
-                        <p class="mb-2 text-blue-200 text-sm">Layanan</p>
-                        <a href="{{ route('pengajuan-surat.create') }}" class="block pl-4 text-white hover:text-secondary transition">
-                            📄 Pengajuan Surat
-                        </a>
-                        <a href="{{ route('pengajuan-surat.check-status') }}" class="block mt-2 pl-4 text-white hover:text-secondary transition">
-                            🔍 Cek Status Surat
-                        </a>
-                        <a href="{{ route('pengaduan.create') }}" class="block mt-2 pl-4 text-white hover:text-secondary transition">
-                            📢 Pengaduan Masyarakat
-                        </a>
-                        <a href="{{ route('pengaduan.check-status') }}" class="block mt-2 pl-4 text-white hover:text-secondary transition">
-                            🔎 Cek Status Pengaduan
-                        </a>
-                    </div>
-                </div>
-            </nav>
         </div>
+
+        @include('layouts.mobile-menu')
     </header>
 
     <!-- Main Content -->
@@ -361,7 +352,6 @@
                         <li><a href="{{ route('facilities') }}" class="text-gray-300 hover:text-secondary transition">Fasilitas Umum</a></li>
                         <li><a href="{{ route('products') }}" class="text-gray-300 hover:text-secondary transition">Produk UMKM</a></li>
                         <li><a href="{{ route('posts') }}" class="text-gray-300 hover:text-secondary transition">Berita & Kegiatan</a></li>
-                        <li><a href="{{ route('pengajuan-surat.create') }}" class="text-gray-300 hover:text-secondary transition">Pengajuan Surat</a></li>
                         <li><a href="{{ route('pengaduan.create') }}" class="text-gray-300 hover:text-secondary transition">Pengaduan Masyarakat</a></li>
                     </ul>
                 </div>
@@ -397,6 +387,31 @@
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        });
+
+        // Mobile Dropdown Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.mobile-dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const btn = dropdown.querySelector('.mobile-dropdown-btn');
+                const content = dropdown.querySelector('.mobile-dropdown-content');
+                const icon = btn.querySelector('i');
+                
+                btn.addEventListener('click', function() {
+                    // Toggle current dropdown
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                    
+                    // Close other dropdowns
+                    dropdowns.forEach(other => {
+                        if (other !== dropdown) {
+                            other.querySelector('.mobile-dropdown-content').classList.add('hidden');
+                            other.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+                });
+            });
         });
     </script>
 

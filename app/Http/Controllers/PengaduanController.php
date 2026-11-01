@@ -64,6 +64,7 @@ class PengaduanController extends Controller
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'isi_laporan' => 'required|string|min:20',
+            'is_anonymous' => 'nullable|boolean',
             'foto.*' => 'nullable|image|mimes:jpeg,jpg,png,webp|max:2048', // max 2MB per foto
         ], [
             'judul.required' => 'Judul pengaduan wajib diisi',
@@ -89,6 +90,7 @@ class PengaduanController extends Controller
                 'judul' => $validated['judul'],
                 'isi_laporan' => $validated['isi_laporan'],
                 'status' => 'menunggu',
+                'is_anonymous' => $request->has('is_anonymous') ? true : false,
             ]);
 
             // Upload foto jika ada

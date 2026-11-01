@@ -18,19 +18,20 @@ Route::get('/profil/peraturan-negeri', [PublicController::class, 'profilePeratur
 // Statistics Route
 Route::get('/statistik', [PublicController::class, 'statistics'])->name('statistics');
 
+// Transparency Routes
+Route::prefix('transparansi')->name('transparency.')->group(function () {
+    Route::get('/apb-negeri', [\App\Http\Controllers\TransparencyController::class, 'apbNegeri'])->name('apb-negeri');
+    Route::get('/realisasi-anggaran', [\App\Http\Controllers\TransparencyController::class, 'realisasiAnggaran'])->name('realisasi-anggaran');
+    Route::get('/blt-bansos', [\App\Http\Controllers\TransparencyController::class, 'bltBansos'])->name('blt-bansos');
+    Route::get('/lppd', [\App\Http\Controllers\TransparencyController::class, 'lppd'])->name('lppd');
+});
+
 Route::get('/wisata', [PublicController::class, 'potentials'])->name('potentials');
 Route::get('/wisata/{id}', [PublicController::class, 'potentialDetail'])->name('potential.detail');
 Route::get('/fasilitas', [PublicController::class, 'facilities'])->name('facilities');
 Route::get('/produk', [PublicController::class, 'products'])->name('products');
 Route::get('/berita', [PublicController::class, 'posts'])->name('posts');
 Route::get('/berita/{slug}', [PublicController::class, 'postDetail'])->name('post.detail');
-
-// Pengajuan Surat Routes (Public)
-Route::get('/pengajuan-surat', [\App\Http\Controllers\PengajuanSuratController::class, 'create'])->name('pengajuan-surat.create');
-Route::post('/pengajuan-surat', [\App\Http\Controllers\PengajuanSuratController::class, 'store'])->name('pengajuan-surat.store');
-Route::get('/pengajuan-surat/sukses/{id}', [\App\Http\Controllers\PengajuanSuratController::class, 'success'])->name('pengajuan-surat.success');
-Route::get('/pengajuan-surat/cek-status', [\App\Http\Controllers\PengajuanSuratController::class, 'checkStatus'])->name('pengajuan-surat.check-status');
-Route::post('/pengajuan-surat/cek-status', [\App\Http\Controllers\PengajuanSuratController::class, 'getStatus'])->name('pengajuan-surat.get-status');
 
 // Pengaduan Routes (Public)
 Route::get('/pengaduan', [\App\Http\Controllers\PengaduanController::class, 'create'])->name('pengaduan.create');
@@ -83,8 +84,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     // Pengajuan Surat Management (Admin)
     Route::resource('pengajuan-surat', \App\Http\Controllers\Admin\PengajuanSuratController::class)->except(['create', 'store']);
 
-    // Jenis Surat Management (Admin)
-    Route::resource('jenis-surat', \App\Http\Controllers\Admin\JenisSuratController::class)->except(['show']);
+    // Transparency Management (Admin)
+    Route::resource('transparency', \App\Http\Controllers\Admin\TransparencyController::class)->except(['show']);
 
     // Pengaduan Management (Admin)
     Route::resource('pengaduan', \App\Http\Controllers\Admin\PengaduanController::class)->except(['create', 'store']);
@@ -92,6 +93,12 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     // Leader Greeting Management (Admin)
     Route::resource('leader-greetings', \App\Http\Controllers\Admin\LeaderGreetingController::class);
+
+    // Transparency Management (Admin)
+    Route::resource('transparency', \App\Http\Controllers\Admin\TransparencyController::class)->except(['show']);
+
+    // Admin User Management
+    Route::resource('users', \App\Http\Controllers\Admin\AdminUserController::class)->except(['show']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,37 +1,37 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-gray-800 text-xl leading-tight">
                 Tanggapi Pengaduan #{{ $pengaduan->nomor_pengaduan }}
             </h2>
-            <a href="{{ route('admin.pengaduan.show', $pengaduan) }}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
+            <a href="{{ route('admin.pengaduan.show', $pengaduan) }}" class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-gray-700">
                 Kembali
             </a>
         </div>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="space-y-6 mx-auto sm:px-6 lg:px-8 max-w-4xl">
             
             @if(session('error'))
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <div class="relative bg-red-100 px-4 py-3 border border-red-400 rounded text-red-700">
                 {{ session('error') }}
             </div>
             @endif
 
             <!-- Ringkasan Pengaduan -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Ringkasan Pengaduan</h3>
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
+                <div class="p-6 border-gray-200 border-b">
+                    <h3 class="mb-4 font-semibold text-gray-800 text-lg">Ringkasan Pengaduan</h3>
                     
                     <div class="space-y-3">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-sm text-gray-600">Nomor Pengaduan</p>
+                                <p class="text-gray-600 text-sm">Nomor Pengaduan</p>
                                 <p class="font-semibold text-gray-900">{{ $pengaduan->nomor_pengaduan }}</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-sm text-gray-600">Status Saat Ini</p>
+                                <p class="text-gray-600 text-sm">Status Saat Ini</p>
                                 @php
                                     $statusColor = match($pengaduan->status) {
                                         'menunggu' => 'bg-yellow-100 text-yellow-800',
@@ -47,13 +47,21 @@
                         </div>
                         
                         <div>
-                            <p class="text-sm text-gray-600">Pelapor</p>
-                            <p class="font-medium text-gray-900">{{ $pengaduan->nama_pelapor }}</p>
-                            <p class="text-sm text-gray-600">{{ $pengaduan->google_email }}</p>
+                            <p class="text-gray-600 text-sm">Pelapor</p>
+                            <p class="font-medium text-gray-900">
+                                {{ $pengaduan->nama_pelapor }}
+                                @if($pengaduan->is_anonymous)
+                                <span class="bg-purple-100 ml-2 px-2 py-0.5 rounded font-medium text-purple-700 text-xs">Anonim</span>
+                                @endif
+                            </p>
+                            <p class="text-gray-600 text-sm">{{ $pengaduan->google_email }}</p>
+                            @if($pengaduan->is_anonymous)
+                            <p class="mt-1 text-purple-600 text-xs">📌 Publik melihat: "Warga Negeri Haria"</p>
+                            @endif
                         </div>
                         
                         <div>
-                            <p class="text-sm text-gray-600">Tanggal Pengaduan</p>
+                            <p class="text-gray-600 text-sm">Tanggal Pengaduan</p>
                             <p class="text-gray-900">{{ $pengaduan->created_at->format('d F Y, H:i') }} WIT</p>
                         </div>
                     </div>
@@ -61,13 +69,13 @@
 
                 <div class="p-6">
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-700 mb-1">Judul Pengaduan</p>
-                        <p class="text-gray-900 font-semibold">{{ $pengaduan->judul }}</p>
+                        <p class="mb-1 font-medium text-gray-700 text-sm">Judul Pengaduan</p>
+                        <p class="font-semibold text-gray-900">{{ $pengaduan->judul }}</p>
                     </div>
                     
                     <div>
-                        <p class="text-sm font-medium text-gray-700 mb-1">Isi Laporan</p>
-                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <p class="mb-1 font-medium text-gray-700 text-sm">Isi Laporan</p>
+                        <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg">
                             <p class="text-gray-800 whitespace-pre-wrap">{{ $pengaduan->isi_laporan }}</p>
                         </div>
                     </div>
@@ -75,9 +83,9 @@
             </div>
 
             <!-- Form Tanggapan -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
                 <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-6">Form Tanggapan</h3>
+                    <h3 class="mb-6 font-semibold text-gray-800 text-lg">Form Tanggapan</h3>
                     
                     <form action="{{ route('admin.pengaduan.update', $pengaduan) }}" method="POST" class="space-y-6">
                         @csrf
@@ -85,24 +93,24 @@
 
                         <!-- Status -->
                         <div>
-                            <label for="status" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="status" class="block mb-2 font-medium text-gray-700 text-sm">
                                 Update Status Pengaduan <span class="text-red-600">*</span>
                             </label>
                             <select 
                                 id="status" 
                                 name="status" 
                                 required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                class="px-4 py-3 border border-gray-300 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-500 w-full"
                             >
                                 <option value="menunggu" {{ $pengaduan->status == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
                                 <option value="diproses" {{ $pengaduan->status == 'diproses' ? 'selected' : '' }}>Diproses</option>
                                 <option value="selesai" {{ $pengaduan->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
                             </select>
                             @error('status')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
                             @enderror
                             
-                            <div class="mt-2 space-y-1 text-sm text-gray-600">
+                            <div class="space-y-1 mt-2 text-gray-600 text-sm">
                                 <p><strong>Menunggu:</strong> Pengaduan baru diterima dan belum ditindaklanjuti</p>
                                 <p><strong>Diproses:</strong> Pengaduan sedang dalam proses penanganan</p>
                                 <p><strong>Selesai:</strong> Pengaduan telah selesai ditangani</p>
@@ -111,7 +119,7 @@
 
                         <!-- Tanggapan -->
                         <div>
-                            <label for="isi_tanggapan" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="isi_tanggapan" class="block mb-2 font-medium text-gray-700 text-sm">
                                 Isi Tanggapan <span class="text-red-600">*</span>
                             </label>
                             <textarea 
@@ -120,29 +128,29 @@
                                 rows="8"
                                 required
                                 placeholder="Tuliskan tanggapan Anda terhadap pengaduan ini. Tanggapan akan dikirimkan via email kepada pelapor."
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                class="px-4 py-3 border border-gray-300 focus:border-transparent rounded-lg focus:ring-2 focus:ring-blue-500 w-full resize-none"
                             >{{ old('isi_tanggapan') }}</textarea>
                             @error('isi_tanggapan')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-red-600 text-sm">{{ $message }}</p>
                             @enderror
                             
-                            <p class="mt-2 text-sm text-gray-600">
+                            <p class="mt-2 text-gray-600 text-sm">
                                 💡 <strong>Catatan:</strong> Email notifikasi akan otomatis dikirim ke <strong>{{ $pengaduan->google_email }}</strong> setelah Anda menyimpan tanggapan ini.
                             </p>
                         </div>
 
                         <!-- Riwayat Tanggapan Sebelumnya -->
                         @if($pengaduan->tanggapans->count() > 0)
-                        <div class="border-t pt-6">
-                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Riwayat Tanggapan Sebelumnya</h4>
+                        <div class="pt-6 border-t">
+                            <h4 class="mb-3 font-semibold text-gray-700 text-sm">Riwayat Tanggapan Sebelumnya</h4>
                             <div class="space-y-3">
                                 @foreach($pengaduan->tanggapans->sortByDesc('created_at') as $tanggapan)
-                                <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                                <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg">
                                     <div class="flex justify-between items-start mb-2">
-                                        <span class="text-xs font-semibold text-gray-600">Tanggapan ke-{{ $loop->index + 1 }}</span>
-                                        <span class="text-xs text-gray-500">{{ $tanggapan->created_at->format('d/m/Y H:i') }}</span>
+                                        <span class="font-semibold text-gray-600 text-xs">Tanggapan ke-{{ $loop->index + 1 }}</span>
+                                        <span class="text-gray-500 text-xs">{{ $tanggapan->created_at->format('d/m/Y H:i') }}</span>
                                     </div>
-                                    <p class="text-sm text-gray-800 whitespace-pre-wrap">{{ $tanggapan->isi_tanggapan }}</p>
+                                    <p class="text-gray-800 text-sm whitespace-pre-wrap">{{ $tanggapan->isi_tanggapan }}</p>
                                 </div>
                                 @endforeach
                             </div>
@@ -153,13 +161,13 @@
                         <div class="flex gap-3 pt-4 border-t">
                             <button 
                                 type="submit" 
-                                class="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors duration-200"
+                                class="flex-1 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium text-white transition-colors duration-200"
                             >
                                 Simpan & Kirim Email Notifikasi
                             </button>
                             <a 
                                 href="{{ route('admin.pengaduan.show', $pengaduan) }}" 
-                                class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium transition-colors duration-200"
+                                class="bg-gray-200 hover:bg-gray-300 px-6 py-3 rounded-lg font-medium text-gray-700 transition-colors duration-200"
                             >
                                 Batal
                             </a>
@@ -170,22 +178,22 @@
 
             <!-- Preview Foto (Mini Gallery) -->
             @if($pengaduan->fotos->count() > 0)
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
                 <div class="p-6">
-                    <h3 class="text-sm font-semibold text-gray-700 mb-3">Foto Pengaduan ({{ $pengaduan->fotos->count() }})</h3>
-                    <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+                    <h3 class="mb-3 font-semibold text-gray-700 text-sm">Foto Pengaduan ({{ $pengaduan->fotos->count() }})</h3>
+                    <div class="gap-2 grid grid-cols-3 md:grid-cols-5">
                         @foreach($pengaduan->fotos as $foto)
                         <a href="{{ asset('storage/' . $foto->file_path) }}" target="_blank" class="block">
                             <img 
                                 src="{{ asset('storage/' . $foto->file_path) }}" 
                                 alt="Foto {{ $loop->iteration }}"
-                                class="w-full h-24 object-cover rounded shadow hover:shadow-lg transition-shadow duration-200"
+                                class="shadow hover:shadow-lg rounded w-full h-24 object-cover transition-shadow duration-200"
                                 loading="lazy"
                             >
                         </a>
                         @endforeach
                     </div>
-                    <p class="mt-2 text-xs text-gray-500">Klik foto untuk membuka dalam tab baru</p>
+                    <p class="mt-2 text-gray-500 text-xs">Klik foto untuk membuka dalam tab baru</p>
                 </div>
             </div>
             @endif

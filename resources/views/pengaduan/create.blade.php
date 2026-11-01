@@ -139,6 +139,26 @@
                     @enderror
                 </div>
 
+                <!-- Opsi Anonim -->
+                <div class="mb-6">
+                    <label class="flex items-start space-x-3 cursor-pointer">
+                        <input 
+                            type="checkbox" 
+                            name="is_anonymous" 
+                            value="1" 
+                            class="mt-1 border-gray-300 rounded focus:ring-blue-500 w-4 h-4 text-blue-600"
+                            {{ old('is_anonymous') ? 'checked' : '' }}
+                        >
+                        <div>
+                            <span class="font-medium text-gray-700">Laporkan secara anonim</span>
+                            <p class="mt-1 text-gray-500 text-sm">
+                                Identitas Anda akan disembunyikan dari publik dan ditampilkan sebagai "Warga Negeri Haria". 
+                                Administrator tetap dapat melihat email Anda untuk mencegah penyalahgunaan.
+                            </p>
+                        </div>
+                    </label>
+                </div>
+
                 <!-- Submit Button -->
                 <div class="flex justify-between items-center pt-4">
                     <a href="{{ route('home') }}" class="text-gray-600 hover:text-gray-800">

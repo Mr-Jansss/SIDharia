@@ -1,117 +1,110 @@
-<nav x-data="{ open: false }" class="bg-white border-gray-100 border-b">
-    <!-- Primary Navigation Menu -->
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="flex items-center shrink-0">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2">
-                        <div class="flex justify-center items-center bg-blue-50 p-1.5 border border-blue-100 rounded-full w-10 h-10">
-                            <img src="{{ asset('storage/logo/logonegeriharia.png') }}" alt="Logo" class="w-full h-full object-contain">
-                        </div>
-                        <span class="font-bold text-blue-600 text-xl">Negeri Haria</span>
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden sm:flex space-x-8 sm:-my-px sm:ms-10">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">Dashboard</x-nav-link>
-                    <x-nav-link :href="route('admin.village-profiles.index')" :active="request()->routeIs('admin.village-profiles.*')">Profil Negeri</x-nav-link>
-                    <x-nav-link :href="route('admin.officials.index')" :active="request()->routeIs('admin.officials.*')">Perangkat</x-nav-link>
-                    <x-nav-link :href="route('admin.leader-greetings.index')" :active="request()->routeIs('admin.leader-greetings.*')">Sambutan</x-nav-link>
-                    <x-nav-link :href="route('admin.potentials.index')" :active="request()->routeIs('admin.potentials.*')">Potensi</x-nav-link>
-                    <x-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">Fasilitas</x-nav-link>
-                    <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.*')">Produk UMKM</x-nav-link>
-                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">Berita</x-nav-link>
-                    <x-nav-link :href="route('admin.pengajuan-surat.index')" :active="request()->routeIs('admin.pengajuan-surat.*')">Pengajuan Surat</x-nav-link>
-                    <x-nav-link :href="route('admin.jenis-surat.index')" :active="request()->routeIs('admin.jenis-surat.*')">Jenis Surat</x-nav-link>
-                    <x-nav-link :href="route('admin.pengaduan.index')" :active="request()->routeIs('admin.pengaduan.*')">Pengaduan</x-nav-link>
-                    <x-nav-link :href="route('admin.hero-sliders.index')" :active="request()->routeIs('admin.hero-sliders.*')">Hero Slider</x-nav-link>
-                    <x-nav-link :href="route('admin.statistics.index')" :active="request()->routeIs('admin.statistics.*')">Statistik</x-nav-link>
-                </div>
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center bg-white px-3 py-2 border border-transparent rounded-md focus:outline-none font-medium text-gray-500 hover:text-gray-700 text-sm leading-4 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ms-1">
-                                <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('admin.settings.index')">
-                            {{ __('Pengaturan Website') }}
-                        </x-dropdown-link>
-
-                        <x-dropdown-link :href="route('admin.profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="sm:hidden flex items-center -me-2">
-                <button @click="open = ! open" class="inline-flex justify-center items-center hover:bg-gray-100 focus:bg-gray-100 p-2 rounded-md focus:outline-none text-gray-400 hover:text-gray-500 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=6C5CE7&color=fff&size=100" 
+             alt="Admin Avatar" 
+             class="mx-auto rounded-full w-16 h-16">
+        <p class="mt-3 font-semibold text-gray-800">{{ Auth::user()->name }}</p>
+        <div class="flex justify-center items-center gap-1 mt-1 text-green-500 text-sm">
+            <span class="inline-block bg-green-500 rounded-full w-2 h-2"></span>
+            <span>Online</span>
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="space-y-1 pt-2 pb-3">
-            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+    <!-- Sidebar Menu -->
+    <div class="sidebar-menu">
+        <a href="{{ route('admin.dashboard') }}" 
+           class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
 
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-gray-200 border-t">
-            <div class="px-4">
-                <div class="font-medium text-gray-800 text-base">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-gray-500 text-sm">{{ Auth::user()->email }}</div>
-            </div>
+        <a href="{{ route('admin.village-profiles.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.village-profiles.*') ? 'active' : '' }}">
+            <i class="fas fa-info-circle"></i>
+            <span>Profil Negeri</span>
+        </a>
 
-            <div class="space-y-1 mt-3">
-                <x-responsive-nav-link :href="route('admin.profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+        <a href="{{ route('admin.officials.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.officials.*') ? 'active' : '' }}">
+            <i class="fas fa-users"></i>
+            <span>Perangkat Negeri</span>
+        </a>
 
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+        <a href="{{ route('admin.leader-greetings.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.leader-greetings.*') ? 'active' : '' }}">
+            <i class="fas fa-comment-dots"></i>
+            <span>Sambutan</span>
+        </a>
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
+        <a href="{{ route('admin.potentials.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.potentials.*') ? 'active' : '' }}">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Potensi Negeri</span>
+        </a>
+
+        <a href="{{ route('admin.facilities.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.facilities.*') ? 'active' : '' }}">
+            <i class="fas fa-building"></i>
+            <span>Fasilitas</span>
+        </a>
+
+        <a href="{{ route('admin.products.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+            <i class="fas fa-store"></i>
+            <span>Produk UMKM</span>
+        </a>
+
+        <a href="{{ route('admin.posts.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+            <i class="fas fa-newspaper"></i>
+            <span>Berita</span>
+        </a>
+
+        <a href="{{ route('admin.transparency.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.transparency.*') ? 'active' : '' }}">
+            <i class="fas fa-chart-line"></i>
+            <span>Transparansi</span>
+        </a>
+
+        <a href="{{ route('admin.pengaduan.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.pengaduan.*') ? 'active' : '' }}">
+            <i class="fas fa-bullhorn"></i>
+            <span>Pengaduan</span>
+        </a>
+
+        <a href="{{ route('admin.hero-sliders.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.hero-sliders.*') ? 'active' : '' }}">
+            <i class="fas fa-images"></i>
+            <span>Hero Slider</span>
+        </a>
+
+        <a href="{{ route('admin.statistics.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.statistics.*') ? 'active' : '' }}">
+            <i class="fas fa-chart-bar"></i>
+            <span>Statistik</span>
+        </a>
+
+        <a href="{{ route('admin.settings.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+
+        <a href="{{ route('admin.users.index') }}" 
+           class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+            <i class="fas fa-users-cog"></i>
+            <span>Kelola Admin</span>
+        </a>
+
+        <!-- Logout -->
+        <form method="POST" action="{{ route('logout') }}" class="mt-4">
+            @csrf
+            <button type="submit" class="hover:bg-red-50 w-full hover:text-red-600 text-left menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
-</nav>
+</aside>

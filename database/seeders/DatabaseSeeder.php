@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             CompleteDataSeeder::class,
             HeroSliderSeeder::class,
             SiteSettingSeeder::class,
-            JenisSuratSeeder::class,
             PengaduanSeeder::class,
         ]);
     }

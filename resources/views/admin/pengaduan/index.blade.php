@@ -99,7 +99,12 @@
                                         <div class="text-xs text-gray-500">{{ $pengaduan->created_at->format('d/m/Y H:i') }}</div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm font-medium text-gray-900">{{ $pengaduan->nama_pelapor }}</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $pengaduan->nama_pelapor }}
+                                            @if($pengaduan->is_anonymous)
+                                            <span class="ml-2 px-2 py-0.5 text-xs bg-purple-100 text-purple-700 rounded">Anonim</span>
+                                            @endif
+                                        </div>
                                         <div class="text-xs text-gray-500">{{ $pengaduan->google_email }}</div>
                                     </td>
                                     <td class="px-6 py-4">

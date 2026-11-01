@@ -47,7 +47,13 @@
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pelapor</label>
-                            <p class="text-gray-900">{{ $pengaduan->nama_pelapor }}</p>
+                            <p class="text-gray-900">
+                                {{ $pengaduan->nama_pelapor }}
+                                @if($pengaduan->is_anonymous)
+                                <span class="ml-2 px-2 py-0.5 text-xs bg-purple-100 text-purple-700 rounded font-medium">Anonim</span>
+                                <span class="block mt-1 text-sm text-gray-600">Publik melihat: "Warga Negeri Haria"</span>
+                                @endif
+                            </p>
                         </div>
                         
                         <div>

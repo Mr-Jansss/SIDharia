@@ -1,127 +1,178 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-gray-800 text-xl leading-tight">
-            {{ __('Admin Dashboard - Negeri Haria') }}
-        </h2>
-    </x-slot>
+    <!-- Page Title Bar -->
+    <div class="flex md:flex-row flex-col justify-between items-start md:items-center gap-4 mb-6">
+        <div>
+            <h1 class="font-bold text-gray-800 text-2xl uppercase">SISTEM INFORMASI NEGERI HARIA</h1>
+            <p class="text-gray-500 text-sm uppercase tracking-wide">Sistem Pengelolaan Data & Layanan Masyarakat</p>
+        </div>
+        <div class="bg-white shadow-sm px-4 py-2 rounded text-gray-600 text-sm">
+            <i class="mr-2 text-purple-600 fas fa-clock"></i>
+            Terakhir login: <span class="font-semibold">{{ now()->format('d M Y') }} | {{ now()->format('H:i') }} WIT</span>
+        </div>
+    </div>
 
-    <div class="py-12">
-        <div class="mx-auto sm:px-6 lg:px-8 max-w-7xl">
-            <!-- Welcome Card -->
-            <div class="bg-white shadow-sm mb-6 sm:rounded-lg overflow-hidden">
-                <div class="p-6 text-gray-900">
-                    <h3 class="mb-2 font-bold text-2xl">Selamat Datang, {{ Auth::user()->name }}!</h3>
-                    <p class="text-gray-600">Anda login sebagai Administrator Negeri Haria</p>
+    <!-- Main Dashboard Card -->
+    <div class="bg-white shadow-lg rounded-3xl overflow-hidden">
+        <!-- Card Header Bar -->
+        <div class="flex md:flex-row flex-col justify-between items-center gap-4 bg-gray-50 px-6 py-4 border-b">
+            <!-- Left: Date & Greeting -->
+            <div class="flex items-center gap-4">
+                <div class="flex justify-center items-center bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl w-14 h-14 text-white text-2xl">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-800 text-lg">{{ now()->format('d F Y') }}</p>
+                    <p class="text-gray-600 text-sm">
+                        @php
+                            $hour = now()->format('H');
+                            if ($hour >= 5 && $hour < 11) {
+                                echo 'Selamat Pagi';
+                            } elseif ($hour >= 11 && $hour < 15) {
+                                echo 'Selamat Siang';
+                            } elseif ($hour >= 15 && $hour < 18) {
+                                echo 'Selamat Sore';
+                            } else {
+                                echo 'Selamat Malam';
+                            }
+                        @endphp
+                    </p>
                 </div>
             </div>
-
-            <!-- Statistics Cards -->
-            <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-6">
-                <!-- Profil Negeri -->
-                <div class="bg-blue-500 shadow-sm sm:rounded-lg overflow-hidden">
-                    <div class="p-6 text-white">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-blue-100 text-sm">Profil Negeri</p>
-                                <p class="font-bold text-3xl">{{ \App\Models\VillageProfile::count() }}</p>
-                            </div>
-                            <svg class="w-12 h-12 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Potensi Wisata -->
-                <div class="bg-yellow-500 shadow-sm sm:rounded-lg overflow-hidden">
-                    <div class="p-6 text-white">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-yellow-100 text-sm">Potensi Wisata</p>
-                                <p class="font-bold text-3xl">{{ \App\Models\Potential::count() }}</p>
-                            </div>
-                            <svg class="w-12 h-12 text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produk UMKM -->
-                <div class="bg-green-500 shadow-sm sm:rounded-lg overflow-hidden">
-                    <div class="p-6 text-white">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-green-100 text-sm">Produk UMKM</p>
-                                <p class="font-bold text-3xl">{{ \App\Models\Product::count() }}</p>
-                            </div>
-                            <svg class="w-12 h-12 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pengaduan -->
-                <div class="bg-red-500 shadow-sm sm:rounded-lg overflow-hidden">
-                    <div class="p-6 text-white">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-red-100 text-sm">Pengajuan Surat</p>
-                                <p class="font-bold text-3xl">{{ \App\Models\PengajuanSurat::where('status', 'pending')->count() }}</p>
-                            </div>
-                            <svg class="w-12 h-12 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
-                <div class="p-6">
-                    <h4 class="mb-4 font-bold text-gray-900 text-lg">Quick Actions</h4>
-                    <div class="gap-4 grid grid-cols-1 md:grid-cols-3">
-                        <a href="{{ route('admin.settings.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Pengaturan Website</h5>
-                            <p class="text-gray-600 text-sm">Edit nomor WA dan teks halaman</p>
-                        </a>
-                        <a href="{{ route('admin.village-profiles.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Profil Negeri</h5>
-                            <p class="text-gray-600 text-sm">Edit sejarah, visi, dan misi desa</p>
-                        </a>
-                        <a href="{{ route('admin.potentials.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Potensi Wisata</h5>
-                            <p class="text-gray-600 text-sm">Tambah dan edit destinasi wisata</p>
-                        </a>
-                        <a href="{{ route('admin.products.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Produk UMKM</h5>
-                            <p class="text-gray-600 text-sm">Tambah produk dan hubungkan WhatsApp</p>
-                        </a>
-                        <a href="{{ route('admin.officials.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Perangkat Desa</h5>
-                            <p class="text-gray-600 text-sm">Atur struktur pemerintahan desa</p>
-                        </a>
-                        <a href="{{ route('admin.posts.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Berita & Kegiatan</h5>
-                            <p class="text-gray-600 text-sm">Publikasikan informasi terbaru desa</p>
-                        </a>
-                        <a href="{{ route('admin.facilities.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Fasilitas Umum</h5>
-                            <p class="text-gray-600 text-sm">Tambah fasilitas dengan lokasi GPS</p>
-                        </a>
-                        <a href="{{ route('admin.pengajuan-surat.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Pengajuan Surat</h5>
-                            <p class="text-gray-600 text-sm">Verifikasi dan proses pengajuan surat</p>
-                        </a>
-                        <a href="{{ route('admin.jenis-surat.index') }}" class="block hover:bg-gray-50 p-4 border border-gray-200 rounded-lg transition">
-                            <h5 class="font-semibold text-gray-900">Kelola Jenis Surat</h5>
-                            <p class="text-gray-600 text-sm">Atur jenis surat dan persyaratannya</p>
-                        </a>
-                    </div>
+            
+            <!-- Right: Dashboard Title & Clock -->
+            <div class="text-right">
+                <p class="font-bold text-gray-800 text-lg uppercase tracking-wide">DASHBOARD</p>
+                <div class="flex justify-end items-center gap-2 text-gray-600 text-sm">
+                    <i class="fas fa-clock"></i>
+                    <span id="realtime-clock">{{ now()->format('H:i:s') }} WIT</span>
                 </div>
             </div>
         </div>
+
+        <!-- Card Content -->
+        <div class="p-8">
+            <!-- Welcome Message -->
+            <div class="mb-6">
+                <h2 class="mb-3 font-bold text-3xl">
+                    Hi, <span style="color: #2EC4D6;">{{ Auth::user()->name }}</span>
+                </h2>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    Selamat datang kembali di halaman Dashboard 
+                    <span class="font-bold uppercase">SISTEM INFORMASI NEGERI HARIA</span>
+                </p>
+            </div>
+
+            <!-- Status Badge -->
+            <div class="flex items-center gap-3 bg-green-50 mb-6 px-4 py-3 border-green-200 border-l-4 rounded-lg">
+                <div class="flex justify-center items-center bg-green-500 rounded-full w-6 h-6 text-white">
+                    <i class="text-xs fas fa-check"></i>
+                </div>
+                <p class="text-gray-700">
+                    Saat ini, <strong>Sistem Aktif dan Berjalan Normal</strong>
+                </p>
+            </div>
+
+            <!-- Info Alert -->
+            <div class="bg-cyan-50 mb-6 px-6 py-5 border border-cyan-200 rounded-xl">
+                <div class="flex items-start gap-3">
+                    <div class="flex flex-shrink-0 justify-center items-center bg-cyan-500 rounded-full w-8 h-8 text-white">
+                        <i class="text-sm fas fa-info"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="mb-2 font-bold text-gray-800">ℹ INFORMASI :</h3>
+                        <p class="mb-3 text-gray-700 leading-relaxed">
+                            Sistem ini digunakan untuk mengelola seluruh data dan layanan digital Negeri Haria. 
+                            Pastikan semua data diperbarui secara berkala untuk kenyamanan masyarakat.
+                        </p>
+                        <div class="flex flex-wrap gap-4 text-sm">
+                            <span class="flex items-center gap-2">
+                                <i class="text-purple-600 fas fa-calendar"></i>
+                                <span class="font-semibold">{{ now()->format('d F Y') }}</span>
+                            </span>
+                            <span class="flex items-center gap-2">
+                                <i class="text-purple-600 fas fa-clock"></i>
+                                <span class="font-semibold">{{ now()->format('H:i') }} WIT</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div>
+                <a href="{{ route('admin.settings.index') }}" 
+                   class="inline-flex items-center gap-3 bg-navy hover:bg-opacity-90 px-8 py-4 rounded-full font-bold text-white transition"
+                   style="background-color: #0F1A3D;">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan Website</span>
+                </a>
+            </div>
+        </div>
     </div>
+
+    <!-- Statistics Cards -->
+    <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8">
+        <!-- Profil Negeri -->
+        <div class="bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex justify-center items-center bg-blue-100 rounded-xl w-14 h-14 text-blue-600">
+                    <i class="text-2xl fas fa-info-circle"></i>
+                </div>
+                <span class="bg-blue-50 px-3 py-1 rounded-full font-semibold text-blue-600 text-xs">PROFIL</span>
+            </div>
+            <p class="mb-1 text-gray-600 text-sm">Profil Negeri</p>
+            <p class="font-bold text-gray-800 text-3xl">{{ \App\Models\VillageProfile::count() }}</p>
+        </div>
+
+        <!-- Potensi Wisata -->
+        <div class="bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex justify-center items-center bg-yellow-100 rounded-xl w-14 h-14 text-yellow-600">
+                    <i class="text-2xl fas fa-map-marked-alt"></i>
+                </div>
+                <span class="bg-yellow-50 px-3 py-1 rounded-full font-semibold text-yellow-600 text-xs">POTENSI</span>
+            </div>
+            <p class="mb-1 text-gray-600 text-sm">Potensi Wisata</p>
+            <p class="font-bold text-gray-800 text-3xl">{{ \App\Models\Potential::count() }}</p>
+        </div>
+
+        <!-- Produk UMKM -->
+        <div class="bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex justify-center items-center bg-green-100 rounded-xl w-14 h-14 text-green-600">
+                    <i class="text-2xl fas fa-store"></i>
+                </div>
+                <span class="bg-green-50 px-3 py-1 rounded-full font-semibold text-green-600 text-xs">UMKM</span>
+            </div>
+            <p class="mb-1 text-gray-600 text-sm">Produk UMKM</p>
+            <p class="font-bold text-gray-800 text-3xl">{{ \App\Models\Product::count() }}</p>
+        </div>
+
+        <!-- Pengaduan -->
+        <div class="bg-white shadow-lg hover:shadow-xl p-6 rounded-2xl transition-shadow">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex justify-center items-center bg-red-100 rounded-xl w-14 h-14 text-red-600">
+                    <i class="text-2xl fas fa-bullhorn"></i>
+                </div>
+                <span class="bg-red-50 px-3 py-1 rounded-full font-semibold text-red-600 text-xs">PENDING</span>
+            </div>
+            <p class="mb-1 text-gray-600 text-sm">Pengaduan Pending</p>
+            <p class="font-bold text-gray-800 text-3xl">{{ \App\Models\Pengaduan::where('status', 'pending')->count() }}</p>
+        </div>
+    </div>
+
+    <!-- Realtime Clock Script -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('realtime-clock').textContent = `${hours}:${minutes}:${seconds} WIT`;
+        }
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
+    </script>
 </x-app-layout>

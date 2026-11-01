@@ -17,11 +17,13 @@ class Pengaduan extends Model
         'judul',
         'isi_laporan',
         'status',
+        'is_anonymous',
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'is_anonymous' => 'boolean',
     ];
 
     /**
@@ -87,5 +89,13 @@ class Pengaduan extends Model
             'selesai' => 'green',
             default => 'gray',
         };
+    }
+
+    /**
+     * Helper untuk display nama pelapor (anonim atau asli)
+     */
+    public function getDisplayName(): string
+    {
+        return $this->is_anonymous ? 'Warga Negeri Haria' : $this->nama_pelapor;
     }
 }
