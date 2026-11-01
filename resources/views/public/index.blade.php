@@ -296,6 +296,32 @@
 </section>
 @endif
 
+<!-- Peta Negeri Haria Section -->
+<section class="bg-white py-16">
+    <div class="mx-auto px-4 container">
+        <div class="mb-12 text-center">
+            <h2 class="mb-4 font-bold text-primary text-4xl">Peta Wilayah Negeri Haria</h2>
+            <p class="text-gray-600 text-lg">Lokasi Negeri Haria di Kecamatan Saparua, Maluku Tengah</p>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+            <div class="relative bg-white shadow-2xl border border-gray-200 rounded-xl overflow-hidden" style="height: 600px;">
+                <div id="village-map" style="width: 100%; height: 100%;"></div>
+            </div>
+            
+            <div class="bg-blue-50 mt-6 p-4 border border-blue-200 rounded-lg">
+                <div class="flex items-start gap-3">
+                    <i class="mt-1 text-blue-600 fas fa-info-circle"></i>
+                    <div class="text-blue-800 text-sm">
+                        <p class="mb-1 font-semibold">Informasi Peta</p>
+                        <p>Peta menampilkan wilayah Negeri Haria dengan batas-batas geografisnya. Anda dapat menggeser dan zoom untuk melihat detail area.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Resolved Complaints / Testimonials Section -->
 @if($resolvedComplaints->count() > 0)
 <section class="bg-gray-50 py-16">
@@ -379,3 +405,155 @@
     </div>
 </section>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<style>
+    #village-map {
+        border-radius: 0.75rem;
+        background: #1e3a8a;
+        z-index: 0;
+        min-height: 600px !important;
+    }
+    
+    .leaflet-container {
+        background: #1e3a8a !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 600px !important;
+        border-radius: 0.75rem;
+    }
+    
+    .leaflet-control-attribution {
+        display: none !important;
+    }
+    
+    .leaflet-tile-pane {
+        opacity: 1;
+    }
+    
+    .leaflet-tile {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    /* Ensure map fills entire container */
+    .leaflet-map-pane,
+    .leaflet-tile-container,
+    .leaflet-overlay-pane {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* Zoom control buttons styling */
+    .leaflet-control-zoom {
+        margin: 10px !important;
+        border: 2px solid rgba(0,0,0,0.2) !important;
+        border-radius: 4px !important;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.4) !important;
+    }
+    
+    .leaflet-control-zoom a {
+        width: 30px !important;
+        height: 30px !important;
+        line-height: 30px !important;
+        font-size: 18px !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        color: #333 !important;
+        background-color: white !important;
+        display: block !important;
+        border-bottom: 1px solid #ccc !important;
+    }
+    
+    .leaflet-control-zoom a:hover {
+        background-color: #f4f4f4 !important;
+        color: #000 !important;
+    }
+    
+    .leaflet-control-zoom a:last-child {
+        border-bottom: none !important;
+        border-radius: 0 0 2px 2px !important;
+    }
+    
+    .leaflet-control-zoom a:first-child {
+        border-radius: 2px 2px 0 0 !important;
+    }
+    
+    .leaflet-control-zoom-in,
+    .leaflet-control-zoom-out {
+        cursor: pointer !important;
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Small delay to ensure container is fully rendered
+    setTimeout(function() {
+        const mapEl = document.getElementById('village-map');
+        
+        // Koordinat batas Negeri Haria
+        const center = [-3.582491, 128.619344]; // Tengah negeri
+        
+        // Init map with explicit size
+        const map = L.map('village-map', {
+            center: center,
+            zoom: 16,
+            minZoom: 14,
+            maxZoom: 18,
+            scrollWheelZoom: false,  // Disable scroll wheel zoom
+            doubleClickZoom: false,  // Disable double click zoom
+            dragging: true,          // Enable dragging/panning
+            zoomControl: true,       // Keep +/- buttons
+            attributionControl: false
+        });
+
+        // Satellite tile layer from ArcGIS
+        const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 18,
+            minZoom: 14,
+            tileSize: 256,
+            updateWhenIdle: false,
+            keepBuffer: 4,
+            crossOrigin: true
+        });
+        
+        satelliteLayer.addTo(map);
+
+        // Label overlay from CartoDB
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            subdomains: 'abcd',
+            updateWhenIdle: false
+        }).addTo(map);
+
+        // Force map to recalculate size and fill container properly
+        setTimeout(function() {
+            map.invalidateSize(true);
+            map.setView(center, 16); // Re-center after invalidate
+        }, 250);
+
+        // Marker untuk titik tengah Negeri Haria
+        const centerIcon = L.divIcon({
+            html: `<div style="background:#00529B;width:40px;height:40px;border-radius:50%;border:3px solid white;box-shadow:0 4px 12px rgba(0,82,155,0.5);display:flex;align-items:center;justify-content:center;"><i class="fas fa-home" style="color:white;font-size:16px;"></i></div>`,
+            className: '',
+            iconSize: [40, 40],
+            iconAnchor: [20, 20]
+        });
+
+        const marker = L.marker(center, {icon: centerIcon})
+            .addTo(map)
+            .bindPopup(`
+                <div style="text-align:center;padding:8px;">
+                    <h3 style="margin:0 0 8px 0;color:#00529B;font-weight:bold;font-size:16px;">Negeri Haria</h3>
+                    <p style="margin:0;font-size:12px;color:#666;">Kecamatan Saparua<br>Kabupaten Maluku Tengah</p>
+                </div>
+            `);
+    }, 100);
+});
+</script>
+@endpush

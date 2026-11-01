@@ -228,6 +228,8 @@
             scroll-behavior: smooth;
         }
     </style>
+    
+    @stack('styles')
 </head>
 <body class="bg-gray-50">
     <!-- Header / Navigation -->
