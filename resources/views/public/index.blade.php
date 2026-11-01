@@ -343,7 +343,7 @@
                 <div class="flex justify-between items-center mt-4 pt-4 border-gray-200 border-t text-gray-500 text-xs">
                     <div>
                         <i class="mr-1 far fa-user"></i>
-                        {{ Str::limit($complaint->nama_pelapor, 20) }}
+                        {{ Str::limit($complaint->getDisplayName(), 20) }}
                     </div>
                     <div>
                         <i class="mr-1 far fa-calendar"></i>
